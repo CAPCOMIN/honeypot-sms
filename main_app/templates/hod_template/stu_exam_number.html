@@ -1,0 +1,71 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block page_title %}{{page_title}}{% endblock page_title %}
+
+{% block content %}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">{{page_title}}</h3>
+                    </div>
+
+                    {% include "main_app/form_template.html" with messages=messages  form=form button_text="生成准考证号"%}
+                </div>
+                <!-- /.card -->
+
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-cyan">
+                        <div class="card-header">
+                            <h3 class="card-title">准考证号生成结果</h3>
+                        </div>
+                        <br><br>
+                        <h1 class="btn  btn-block">{{ result }}</h1>
+                        {#                        <p>{{ res }}</p>#}
+                        <br><br>
+
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-gray">
+                        <div class="card-header">
+                            <h3 class="card-title">准考证号识别码</h3>
+                        </div>
+                        <br>
+                        <div align="center">
+                        <img height="100" width="300"
+                             src="/media/code-img/{{ en }}.png" />
+                        {#                        <p>{{ res }}</p>#}
+                        <br><br>
+                            </div>
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

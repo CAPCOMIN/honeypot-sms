@@ -1,0 +1,50 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block page_title %}{{page_title}}{% endblock page_title %}
+
+{% block content %}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-yellow">
+                    <div class="card-header">
+                        <h3 class="card-title">个人奖项管理
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>获奖人</th>
+                                    <th>奖项名称</th>
+                                    <th>奖金</th>
+                                    <th>获奖日期</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for award in awards %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{award.winner}}</td>
+                                    <td>{{award.awardName}}</td>
+                                    <td>RMB {{award.bonus}}</td>
+                                    <td>{{award.winningDate}}</td>
+                                    <td>
+                                        <a href="{% url 'delete_award' award.id %}" onclick="return confirm('确定要删除该项吗？')" class="btn btn-danger">删除</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

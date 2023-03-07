@@ -1,0 +1,616 @@
+2022-04-09 19:24:15,651-[admin_home:86]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:24:16,650-[log_response:224]-WARNING-Not Found: /favicon.ico
+2022-04-09 19:24:16,650-[log_message:157]-WARNING-"GET /favicon.ico HTTP/1.1" 404 179
+2022-04-09 19:24:17,404-[admin_view_profile:1033]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:24:18,790-[convenient_calc:92]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:24:19,451-[search:117]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:24:19,934-[upload_and_show_group_photo:160]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:24:20,336-[add_online_teaching_url:184]-CRITICAL-request_user:zhangxiyuan, form:<tr><th><label for="id_platform">Platform:</label></th><td><input type="text" name="platform" maxlength="20" class="form-control" required id="id_platform"></td></tr>
+<tr><th><label for="id_url">Url:</label></th><td><input type="url" name="url" maxlength="200" class="form-control" required id="id_url"></td></tr>
+2022-04-09 19:24:20,710-[manage_online_teaching_url:194]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:24:21,042-[stu_data_parser:214]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:24:21,458-[serialize_stu_parser:327]-CRITICAL-request_user:zhangxiyuan, form:<tr><th><label for="id_StuId">学号:</label></th><td><input type="text" name="StuId" value="08190000" maxlength="8" class="form-control" required id="id_StuId"></td></tr>
+<tr><th><label for="id_name">姓名:</label></th><td><input type="text" name="name" maxlength="100" class="form-control" required id="id_name"></td></tr>
+<tr><th><label for="id_age">年龄:</label></th><td><input type="number" name="age" value="19" min="0" class="form-control" required id="id_age"></td></tr>
+<tr><th><label for="id_gender">性别:</label></th><td><select name="gender" class="form-control" id="id_gender">
+  <option value="M" selected>Male</option>
+
+  <option value="F">Female</option>
+
+</select></td></tr>
+<tr><th><label for="id_isFullData">请选择是否显示全部解析数据:</label></th><td><input type="checkbox" name="isFullData" value="1" class="form-control" id="id_isFullData" checked></td></tr>
+2022-04-09 19:24:21,801-[add_award:594]-CRITICAL-request_user:zhangxiyuan, form:<tr><th><label for="id_winner">获奖者:</label></th><td><select name="winner" class="form-control" required id="id_winner">
+  <option value="" selected>---------</option>
+
+  <option value="1">zhangxiyuan</option>
+
+  <option value="2">赵文斌</option>
+
+  <option value="4">赵风华</option>
+
+  <option value="5">李斌</option>
+
+  <option value="6">常涵亮</option>
+
+  <option value="7">李子奇</option>
+
+</select></td></tr>
+<tr><th><label for="id_bonus">奖金:</label></th><td><input type="number" name="bonus" step="0.01" class="form-control" required id="id_bonus"></td></tr>
+<tr><th><label for="id_awardName">奖项名称:</label></th><td><input type="text" name="awardName" maxlength="120" class="form-control" required id="id_awardName"></td></tr>
+<tr><th><label for="id_winningDate">获奖日期:</label></th><td><input type="date" name="winningDate" class="form-control" required id="id_winningDate"></td></tr>
+2022-04-09 19:24:22,278-[manage_award:623]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:24:22,663-[stu_exam_num_generate:563]-CRITICAL-request_user:zhangxiyuan, form:<tr><th><label for="id_StuId">学号:</label></th><td><input type="text" name="StuId" value="08190000" maxlength="8" class="form-control" required id="id_StuId"></td></tr>
+<tr><th><label for="id_examMode">考试种类:</label></th><td><select name="examMode" class="form-control" required id="id_examMode">
+  <option value="" selected>---------</option>
+
+  <option value="00">期末考试</option>
+
+  <option value="01">期中考试</option>
+
+  <option value="10">课程测试</option>
+
+  <option value="11">特种考试</option>
+
+</select></td></tr>
+2022-04-09 19:24:23,515-[manage_stu_exam_num:573]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:24:29,006-[stu_exam_num_generate:563]-CRITICAL-request_user:zhangxiyuan, form:<tr><th><label for="id_StuId">学号:</label></th><td><input type="text" name="StuId" value="08190000" maxlength="8" class="form-control" required id="id_StuId"></td></tr>
+<tr><th><label for="id_examMode">考试种类:</label></th><td><select name="examMode" class="form-control" required id="id_examMode">
+  <option value="" selected>---------</option>
+
+  <option value="00">期末考试</option>
+
+  <option value="01">期中考试</option>
+
+  <option value="10">课程测试</option>
+
+  <option value="11">特种考试</option>
+
+</select></td></tr>
+2022-04-09 19:24:39,547-[stu_exam_num_generate:563]-CRITICAL-request_user:zhangxiyuan, form:<tr><th><label for="id_StuId">学号:</label></th><td><input type="text" name="StuId" value="08191111" maxlength="8" class="form-control" required id="id_StuId"></td></tr>
+<tr><th><label for="id_examMode">考试种类:</label></th><td><select name="examMode" class="form-control" required id="id_examMode">
+  <option value="">---------</option>
+
+  <option value="00" selected>期末考试</option>
+
+  <option value="01">期中考试</option>
+
+  <option value="10">课程测试</option>
+
+  <option value="11">特种考试</option>
+
+</select></td></tr>
+2022-04-09 19:24:40,960-[manage_stu_exam_num:573]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:24:44,553-[delete_en:584]-CRITICAL-request_user:zhangxiyuan, de_en:StuExamNumber object (None)
+2022-04-09 19:24:44,575-[manage_stu_exam_num:573]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:24:45,899-[admin_notify_staff:1064]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:25:44,988-[student_feedback_message:901]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:25:45,941-[serialize_stu_parser:327]-CRITICAL-request_user:zhangxiyuan, form:<tr><th><label for="id_StuId">学号:</label></th><td><input type="text" name="StuId" value="08190000" maxlength="8" class="form-control" required id="id_StuId"></td></tr>
+<tr><th><label for="id_name">姓名:</label></th><td><input type="text" name="name" maxlength="100" class="form-control" required id="id_name"></td></tr>
+<tr><th><label for="id_age">年龄:</label></th><td><input type="number" name="age" value="19" min="0" class="form-control" required id="id_age"></td></tr>
+<tr><th><label for="id_gender">性别:</label></th><td><select name="gender" class="form-control" id="id_gender">
+  <option value="M" selected>Male</option>
+
+  <option value="F">Female</option>
+
+</select></td></tr>
+<tr><th><label for="id_isFullData">请选择是否显示全部解析数据:</label></th><td><input type="checkbox" name="isFullData" value="1" class="form-control" id="id_isFullData" checked></td></tr>
+2022-04-09 19:25:47,143-[manage_subject:675]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:25:48,642-[add_online_teaching_url:184]-CRITICAL-request_user:zhangxiyuan, form:<tr><th><label for="id_platform">Platform:</label></th><td><input type="text" name="platform" maxlength="20" class="form-control" required id="id_platform"></td></tr>
+<tr><th><label for="id_url">Url:</label></th><td><input type="url" name="url" maxlength="200" class="form-control" required id="id_url"></td></tr>
+2022-04-09 19:25:49,852-[manage_online_teaching_url:194]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:25:50,292-[serialize_stu_parser:327]-CRITICAL-request_user:zhangxiyuan, form:<tr><th><label for="id_StuId">学号:</label></th><td><input type="text" name="StuId" value="08190000" maxlength="8" class="form-control" required id="id_StuId"></td></tr>
+<tr><th><label for="id_name">姓名:</label></th><td><input type="text" name="name" maxlength="100" class="form-control" required id="id_name"></td></tr>
+<tr><th><label for="id_age">年龄:</label></th><td><input type="number" name="age" value="19" min="0" class="form-control" required id="id_age"></td></tr>
+<tr><th><label for="id_gender">性别:</label></th><td><select name="gender" class="form-control" id="id_gender">
+  <option value="M" selected>Male</option>
+
+  <option value="F">Female</option>
+
+</select></td></tr>
+<tr><th><label for="id_isFullData">请选择是否显示全部解析数据:</label></th><td><input type="checkbox" name="isFullData" value="1" class="form-control" id="id_isFullData" checked></td></tr>
+2022-04-09 19:25:52,679-[stu_exam_num_generate:563]-CRITICAL-request_user:zhangxiyuan, form:<tr><th><label for="id_StuId">学号:</label></th><td><input type="text" name="StuId" value="08190000" maxlength="8" class="form-control" required id="id_StuId"></td></tr>
+<tr><th><label for="id_examMode">考试种类:</label></th><td><select name="examMode" class="form-control" required id="id_examMode">
+  <option value="" selected>---------</option>
+
+  <option value="00">期末考试</option>
+
+  <option value="01">期中考试</option>
+
+  <option value="10">课程测试</option>
+
+  <option value="11">特种考试</option>
+
+</select></td></tr>
+2022-04-09 19:25:57,179-[stu_exam_num_generate:563]-CRITICAL-request_user:zhangxiyuan, form:<tr><th><label for="id_StuId">学号:</label></th><td><input type="text" name="StuId" value="08191234" maxlength="8" class="form-control" required id="id_StuId"></td></tr>
+<tr><th><label for="id_examMode">考试种类:</label></th><td><select name="examMode" class="form-control" required id="id_examMode">
+  <option value="">---------</option>
+
+  <option value="00" selected>期末考试</option>
+
+  <option value="01">期中考试</option>
+
+  <option value="10">课程测试</option>
+
+  <option value="11">特种考试</option>
+
+</select></td></tr>
+2022-04-09 19:25:58,653-[manage_stu_exam_num:573]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:26:01,008-[delete_en:579]-CRITICAL-request_user:zhangxiyuan, de_en:StuExamNumber object (53)
+2022-04-09 19:26:01,035-[manage_stu_exam_num:573]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:27:24,454-[manage_staff:644]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:27:27,113-[add_staff:373]-CRITICAL-request_user:zhangxiyuan, form:<tr><th><label for="id_first_name">First name:</label></th><td><input type="text" name="first_name" class="form-control" required id="id_first_name"></td></tr>
+<tr><th><label for="id_last_name">Last name:</label></th><td><input type="text" name="last_name" class="form-control" required id="id_last_name"></td></tr>
+<tr><th><label for="id_email">Email:</label></th><td><input type="email" name="email" class="form-control" required id="id_email"></td></tr>
+<tr><th><label for="id_gender">Gender:</label></th><td><select name="gender" class="form-control" id="id_gender">
+  <option value="M">Male</option>
+
+  <option value="F">Female</option>
+
+</select></td></tr>
+<tr><th><label for="id_password">Password:</label></th><td><input type="password" name="password" class="form-control" required id="id_password"></td></tr>
+<tr><th><label for="id_profile_pic">Profile pic:</label></th><td><input type="file" name="profile_pic" accept="image/*" class="form-control" required id="id_profile_pic"></td></tr>
+<tr><th><label for="id_address">Address:</label></th><td><textarea name="address" cols="40" rows="10" class="form-control" required id="id_address">
+</textarea></td></tr>
+<tr><th><label for="id_course">Course:</label></th><td><select name="course" class="form-control" required id="id_course">
+  <option value="" selected>---------</option>
+
+  <option value="1">算法设计与分析</option>
+
+  <option value="2">数据结构</option>
+
+  <option value="3">计算机网络</option>
+
+  <option value="4">网络安全</option>
+
+  <option value="5">高等数学</option>
+
+  <option value="6">大学英语A1</option>
+
+  <option value="7">计算机组成原理</option>
+
+  <option value="8">操作系统安全</option>
+
+  <option value="9">微机原理与接口</option>
+
+  <option value="10">Java语言与网络编程</option>
+
+  <option value="11">数据库原理与应用</option>
+
+</select></td></tr>
+2022-04-09 19:29:10,214-[add_staff:373]-CRITICAL-request_user:zhangxiyuan, form:<tr><th><label for="id_first_name">First name:</label></th><td><input type="text" name="first_name" class="form-control" required id="id_first_name"></td></tr>
+<tr><th><label for="id_last_name">Last name:</label></th><td><input type="text" name="last_name" class="form-control" required id="id_last_name"></td></tr>
+<tr><th><label for="id_email">Email:</label></th><td><input type="email" name="email" class="form-control" required id="id_email"></td></tr>
+<tr><th><label for="id_gender">Gender:</label></th><td><select name="gender" class="form-control" id="id_gender">
+  <option value="M">Male</option>
+
+  <option value="F">Female</option>
+
+</select></td></tr>
+<tr><th><label for="id_password">Password:</label></th><td><input type="password" name="password" class="form-control" required id="id_password"></td></tr>
+<tr><th><label for="id_profile_pic">Profile pic:</label></th><td><input type="file" name="profile_pic" accept="image/*" class="form-control" required id="id_profile_pic"></td></tr>
+<tr><th><label for="id_address">Address:</label></th><td><textarea name="address" cols="40" rows="10" class="form-control" required id="id_address">
+</textarea></td></tr>
+<tr><th><label for="id_course">Course:</label></th><td><select name="course" class="form-control" required id="id_course">
+  <option value="" selected>---------</option>
+
+  <option value="1">算法设计与分析</option>
+
+  <option value="2">数据结构</option>
+
+  <option value="3">计算机网络</option>
+
+  <option value="4">网络安全</option>
+
+  <option value="5">高等数学</option>
+
+  <option value="6">大学英语A1</option>
+
+  <option value="7">计算机组成原理</option>
+
+  <option value="8">操作系统安全</option>
+
+  <option value="9">微机原理与接口</option>
+
+  <option value="10">Java语言与网络编程</option>
+
+  <option value="11">数据库原理与应用</option>
+
+</select></td></tr>
+2022-04-09 19:29:35,081-[search:117]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:29:36,839-[searchResult:132]-CRITICAL-request_user:zhangxiyuan, f:风华, f:<QuerySet [<CustomUser: 赵风华>]>
+2022-04-09 19:30:19,725-[log_response:224]-ERROR-Internal Server Error: /searchresult/
+Traceback (most recent call last):
+  File "D:\ANACONDA\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "D:\ANACONDA\lib\site-packages\django\core\handlers\base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\zxy\Desktop\网络攻防实践\smsVulnRange_Repair\main_app\hod_views.py", line 125, in searchResult
+    Q(last_name__contains=firstName[0], first_name__contains=firstName[1:]))
+IndexError: string index out of range
+2022-04-09 19:30:19,728-[log_message:157]-ERROR-"GET /searchresult/?f= HTTP/1.1" 500 145
+2022-04-09 19:32:11,841-[log_response:224]-ERROR-Internal Server Error: /searchresult/
+Traceback (most recent call last):
+  File "D:\ANACONDA\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "D:\ANACONDA\lib\site-packages\django\core\handlers\base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\zxy\Desktop\网络攻防实践\smsVulnRange_Repair\main_app\hod_views.py", line 129, in searchResult
+    print(result)
+UnboundLocalError: local variable 'result' referenced before assignment
+2022-04-09 19:32:11,843-[log_message:157]-ERROR-"GET /searchresult/?f= HTTP/1.1" 500 145
+2022-04-09 19:32:13,117-[searchResult:134]-CRITICAL-request_user:zhangxiyuan, f:风华, f:<QuerySet [<CustomUser: 赵风华>]>
+2022-04-09 19:32:47,844-[convenient_calc:92]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:32:48,513-[calculated:111]-CRITICAL-request_user:zhangxiyuan, formula:, result:无效公式
+2022-04-09 19:34:01,941-[calculated:111]-CRITICAL-request_user:zhangxiyuan, formula:, result:无效公式
+2022-04-09 19:34:03,156-[convenient_calc:92]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:34:03,857-[search:117]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:34:04,741-[searchResult:135]-CRITICAL-request_user:zhangxiyuan, f:, f:无效的条件
+2022-04-09 19:34:11,510-[searchResult:135]-CRITICAL-request_user:zhangxiyuan, f:风华, f:<QuerySet [<CustomUser: 赵风华>]>
+2022-04-09 19:34:13,253-[searchResult:135]-CRITICAL-request_user:zhangxiyuan, f:, f:无效的条件
+2022-04-09 19:35:40,213-[searchResult:134]-CRITICAL-request_user:zhangxiyuan, f:, f:
+2022-04-09 19:35:48,070-[searchResult:134]-CRITICAL-request_user:zhangxiyuan, f:风华, f:<QuerySet [<CustomUser: 赵风华>]>
+2022-04-09 19:37:51,005-[admin_home:86]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:38:00,785-[admin_home:86]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:38:01,970-[log_response:224]-WARNING-Not Found: /admin_view_profile
+2022-04-09 19:38:01,971-[log_message:157]-WARNING-"GET /admin_view_profile HTTP/1.1" 404 179
+2022-04-09 19:38:06,146-[convenient_calc:92]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:38:06,948-[search:117]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:38:07,546-[upload_and_show_group_photo:162]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:38:09,952-[add_online_teaching_url:186]-CRITICAL-request_user:GuestAdmin, form:<tr><th><label for="id_platform">Platform:</label></th><td><input type="text" name="platform" maxlength="20" class="form-control" required id="id_platform"></td></tr>
+<tr><th><label for="id_url">Url:</label></th><td><input type="url" name="url" maxlength="200" class="form-control" required id="id_url"></td></tr>
+2022-04-09 19:38:10,489-[manage_online_teaching_url:196]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:38:11,023-[serialize_stu_parser:329]-CRITICAL-request_user:GuestAdmin, form:<tr><th><label for="id_StuId">学号:</label></th><td><input type="text" name="StuId" value="08190000" maxlength="8" class="form-control" required id="id_StuId"></td></tr>
+<tr><th><label for="id_name">姓名:</label></th><td><input type="text" name="name" maxlength="100" class="form-control" required id="id_name"></td></tr>
+<tr><th><label for="id_age">年龄:</label></th><td><input type="number" name="age" value="19" min="0" class="form-control" required id="id_age"></td></tr>
+<tr><th><label for="id_gender">性别:</label></th><td><select name="gender" class="form-control" id="id_gender">
+  <option value="M" selected>Male</option>
+
+  <option value="F">Female</option>
+
+</select></td></tr>
+<tr><th><label for="id_isFullData">请选择是否显示全部解析数据:</label></th><td><input type="checkbox" name="isFullData" value="1" class="form-control" id="id_isFullData" checked></td></tr>
+2022-04-09 19:38:12,516-[admin_notify_student:1076]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:38:17,636-[add_subject:505]-CRITICAL-request_user:GuestAdmin, form:<tr><th><label for="id_name">Name:</label></th><td><input type="text" name="name" maxlength="120" class="form-control" required id="id_name"></td></tr>
+<tr><th><label for="id_staff">Staff:</label></th><td><select name="staff" class="form-control" required id="id_staff">
+  <option value="" selected>---------</option>
+
+  <option value="1">赵 文斌</option>
+
+  <option value="3">李 斌</option>
+
+  <option value="4">Guest Admin</option>
+
+</select></td></tr>
+<tr><th><label for="id_course">Course:</label></th><td><select name="course" class="form-control" required id="id_course">
+  <option value="" selected>---------</option>
+
+  <option value="1">算法设计与分析</option>
+
+  <option value="2">数据结构</option>
+
+  <option value="3">计算机网络</option>
+
+  <option value="4">网络安全</option>
+
+  <option value="5">高等数学</option>
+
+  <option value="6">大学英语A1</option>
+
+  <option value="7">计算机组成原理</option>
+
+  <option value="8">操作系统安全</option>
+
+  <option value="9">微机原理与接口</option>
+
+  <option value="10">Java语言与网络编程</option>
+
+  <option value="11">数据库原理与应用</option>
+
+</select></td></tr>
+2022-04-09 19:38:18,838-[admin_notify_staff:1066]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:38:26,431-[log_response:224]-WARNING-Not Found: /admin_view_profile
+2022-04-09 19:38:26,431-[log_message:157]-WARNING-"GET /admin_view_profile HTTP/1.1" 404 179
+2022-04-09 19:38:49,114-[admin_notify_staff:1066]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:38:50,560-[log_response:224]-WARNING-Not Found: /admin_view_profile
+2022-04-09 19:38:50,560-[log_message:157]-WARNING-"GET /admin_view_profile HTTP/1.1" 404 179
+2022-04-09 19:39:04,081-[admin_home:86]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:39:05,261-[admin_view_profile:1035]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:39:18,508-[admin_home:86]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:39:20,100-[admin_view_profile:1035]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:39:34,556-[admin_home:86]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:39:35,718-[admin_home:86]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:39:36,265-[log_response:224]-WARNING-Not Found: /admin_view_profile
+2022-04-09 19:39:36,266-[log_message:157]-WARNING-"GET /admin_view_profile HTTP/1.1" 404 179
+2022-04-09 19:39:56,663-[admin_home:86]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:40:23,762-[admin_home:86]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:40:25,320-[log_response:224]-WARNING-Not Found: /admin_view_profile
+2022-04-09 19:40:25,320-[log_message:157]-WARNING-"GET /admin_view_profile HTTP/1.1" 404 179
+2022-04-09 19:41:03,799-[log_response:224]-WARNING-Not Found: /admin_view_profile
+2022-04-09 19:41:03,800-[log_message:157]-WARNING-"GET /admin_view_profile HTTP/1.1" 404 179
+2022-04-09 19:41:05,442-[log_response:224]-WARNING-Not Found: /admin_view_profile
+2022-04-09 19:41:05,443-[log_message:157]-WARNING-"GET /admin_view_profile HTTP/1.1" 404 179
+2022-04-09 19:41:06,620-[convenient_calc:92]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:41:07,558-[log_response:224]-WARNING-Not Found: /admin_view_profile
+2022-04-09 19:41:07,558-[log_message:157]-WARNING-"GET /admin_view_profile HTTP/1.1" 404 179
+2022-04-09 19:42:19,347-[log_response:224]-WARNING-Not Found: /admin_view_profile
+2022-04-09 19:42:19,348-[log_message:157]-WARNING-"GET /admin_view_profile HTTP/1.1" 404 179
+2022-04-09 19:43:18,740-[log_response:224]-WARNING-Not Found: /admin_view_profile
+2022-04-09 19:43:18,740-[log_message:157]-WARNING-"GET /admin_view_profile HTTP/1.1" 404 179
+2022-04-09 19:43:33,823-[convenient_calc:92]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:43:34,636-[log_response:224]-WARNING-Not Found: /admin_view_profile
+2022-04-09 19:43:34,636-[log_message:157]-WARNING-"GET /admin_view_profile HTTP/1.1" 404 179
+2022-04-09 19:43:49,475-[log_response:224]-WARNING-Not Found: /admin_view_profile
+2022-04-09 19:43:49,476-[log_message:157]-WARNING-"GET /admin_view_profile HTTP/1.1" 404 179
+2022-04-09 19:45:21,281-[log_response:224]-WARNING-Not Found: /admin_view_profile
+2022-04-09 19:45:21,281-[log_message:157]-WARNING-"GET /admin_view_profile HTTP/1.1" 404 179
+2022-04-09 19:45:22,915-[log_response:224]-WARNING-Not Found: /admin_view_profile
+2022-04-09 19:45:22,915-[log_message:157]-WARNING-"GET /admin_view_profile HTTP/1.1" 404 179
+2022-04-09 19:48:58,003-[log_response:224]-ERROR-Internal Server Error: /admin_view_profile
+Traceback (most recent call last):
+  File "D:\ANACONDA\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "D:\ANACONDA\lib\site-packages\django\core\handlers\base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\zxy\Desktop\网络攻防实践\smsVulnRange_Repair\main_app\hod_views.py", line 1030, in admin_view_profile
+    admin = Admin.objects.get(admin=request.user)
+  File "D:\ANACONDA\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\ANACONDA\lib\site-packages\django\db\models\query.py", line 429, in get
+    raise self.model.DoesNotExist(
+main_app.models.Admin.DoesNotExist: Admin matching query does not exist.
+2022-04-09 19:48:58,019-[log_message:157]-ERROR-"GET /admin_view_profile HTTP/1.1" 500 145
+2022-04-09 19:49:14,005-[admin_home:86]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:49:15,333-[admin_view_profile:1036]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:50:48,155-[admin_home:86]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:50:50,833-[log_response:224]-ERROR-Internal Server Error: /admin_view_profile
+Traceback (most recent call last):
+  File "D:\ANACONDA\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "D:\ANACONDA\lib\site-packages\django\core\handlers\base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\zxy\Desktop\网络攻防实践\smsVulnRange_Repair\main_app\hod_views.py", line 1030, in admin_view_profile
+    admin = Admin.objects.get(admin=request.user)
+  File "D:\ANACONDA\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\ANACONDA\lib\site-packages\django\db\models\query.py", line 429, in get
+    raise self.model.DoesNotExist(
+main_app.models.Admin.DoesNotExist: Admin matching query does not exist.
+2022-04-09 19:50:50,834-[log_message:157]-ERROR-"GET /admin_view_profile HTTP/1.1" 500 145
+2022-04-09 19:53:46,203-[convenient_calc:92]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:53:47,225-[convenient_calc:92]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:53:47,923-[admin_home:86]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:53:49,239-[convenient_calc:92]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:53:50,632-[convenient_calc:92]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:53:51,139-[search:117]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:53:53,180-[searchResult:134]-CRITICAL-request_user:GuestAdmin, f:风华, f:<QuerySet [<CustomUser: 赵风华>]>
+2022-04-09 19:53:54,236-[upload_and_show_group_photo:162]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:53:55,376-[add_online_teaching_url:186]-CRITICAL-request_user:GuestAdmin, form:<tr><th><label for="id_platform">Platform:</label></th><td><input type="text" name="platform" maxlength="20" class="form-control" required id="id_platform"></td></tr>
+<tr><th><label for="id_url">Url:</label></th><td><input type="url" name="url" maxlength="200" class="form-control" required id="id_url"></td></tr>
+2022-04-09 19:53:56,648-[serialize_stu_parser:329]-CRITICAL-request_user:GuestAdmin, form:<tr><th><label for="id_StuId">学号:</label></th><td><input type="text" name="StuId" value="08190000" maxlength="8" class="form-control" required id="id_StuId"></td></tr>
+<tr><th><label for="id_name">姓名:</label></th><td><input type="text" name="name" maxlength="100" class="form-control" required id="id_name"></td></tr>
+<tr><th><label for="id_age">年龄:</label></th><td><input type="number" name="age" value="19" min="0" class="form-control" required id="id_age"></td></tr>
+<tr><th><label for="id_gender">性别:</label></th><td><select name="gender" class="form-control" id="id_gender">
+  <option value="M" selected>Male</option>
+
+  <option value="F">Female</option>
+
+</select></td></tr>
+<tr><th><label for="id_isFullData">请选择是否显示全部解析数据:</label></th><td><input type="checkbox" name="isFullData" value="1" class="form-control" id="id_isFullData" checked></td></tr>
+2022-04-09 19:53:57,102-[stu_data_parser:216]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:53:58,188-[admin_notify_staff:1073]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:54:09,247-[admin_notify_student:1083]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:54:10,922-[add_staff:375]-CRITICAL-request_user:GuestAdmin, form:<tr><th><label for="id_first_name">First name:</label></th><td><input type="text" name="first_name" class="form-control" required id="id_first_name"></td></tr>
+<tr><th><label for="id_last_name">Last name:</label></th><td><input type="text" name="last_name" class="form-control" required id="id_last_name"></td></tr>
+<tr><th><label for="id_email">Email:</label></th><td><input type="email" name="email" class="form-control" required id="id_email"></td></tr>
+<tr><th><label for="id_gender">Gender:</label></th><td><select name="gender" class="form-control" id="id_gender">
+  <option value="M">Male</option>
+
+  <option value="F">Female</option>
+
+</select></td></tr>
+<tr><th><label for="id_password">Password:</label></th><td><input type="password" name="password" class="form-control" required id="id_password"></td></tr>
+<tr><th><label for="id_profile_pic">Profile pic:</label></th><td><input type="file" name="profile_pic" accept="image/*" class="form-control" required id="id_profile_pic"></td></tr>
+<tr><th><label for="id_address">Address:</label></th><td><textarea name="address" cols="40" rows="10" class="form-control" required id="id_address">
+</textarea></td></tr>
+<tr><th><label for="id_course">Course:</label></th><td><select name="course" class="form-control" required id="id_course">
+  <option value="" selected>---------</option>
+
+  <option value="1">算法设计与分析</option>
+
+  <option value="2">数据结构</option>
+
+  <option value="3">计算机网络</option>
+
+  <option value="4">网络安全</option>
+
+  <option value="5">高等数学</option>
+
+  <option value="6">大学英语A1</option>
+
+  <option value="7">计算机组成原理</option>
+
+  <option value="8">操作系统安全</option>
+
+  <option value="9">微机原理与接口</option>
+
+  <option value="10">Java语言与网络编程</option>
+
+  <option value="11">数据库原理与应用</option>
+
+</select></td></tr>
+2022-04-09 19:54:11,963-[manage_student:657]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:54:13,125-[manage_course:667]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:54:14,194-[manage_subject:677]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:54:15,594-[manage_session:855]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:54:16,597-[staff_feedback_message:919]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:54:17,776-[view_staff_leave:941]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:54:19,414-[view_student_leave:967]-CRITICAL-request_user:GuestAdmin
+2022-04-09 19:57:02,447-[admin_home:86]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 19:57:03,920-[admin_view_profile:1042]-CRITICAL-request_user:zhangxiyuan
+2022-04-09 20:44:57,918-[admin_home:86]-CRITICAL-request_user:GuestAdmin
+2022-04-09 20:45:01,506-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:03:12,802-[admin_home:86]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:03:19,239-[admin_notify_staff:1073]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:03:21,046-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:05:20,316-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:05:30,955-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:05:36,147-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:05:36,945-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:05:52,524-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:05:55,470-[admin_notify_staff:1073]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:05:58,223-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:06:12,910-[admin_home:86]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:06:14,535-[admin_notify_staff:1073]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:06:30,556-[log_response:224]-WARNING-Not Found: /favicon.ico
+2022-04-09 21:06:30,557-[log_message:157]-WARNING-"GET /favicon.ico HTTP/1.1" 404 179
+2022-04-09 21:06:38,856-[log_response:224]-WARNING-Forbidden (CSRF token missing or incorrect.): /doLogin/
+2022-04-09 21:06:38,856-[log_message:157]-WARNING-"POST /doLogin/ HTTP/1.1" 403 1019
+2022-04-09 21:06:43,630-[admin_home:86]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:06:46,971-[admin_notify_staff:1073]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:06:48,925-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:06:53,882-[admin_home:86]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:07:08,622-[admin_notify_staff:1073]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:08:06,177-[admin_notify_staff:1073]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:08:09,840-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:08:12,054-[admin_notify_staff:1073]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:08:12,924-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:08:13,752-[admin_notify_staff:1073]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:08:14,947-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:08:33,694-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:08:35,448-[admin_notify_staff:1073]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:08:36,167-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:08:40,340-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:08:41,199-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:08:46,675-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-04-09 21:08:54,007-[admin_notify_student:1084]-CRITICAL-request_user:GuestAdmin
+2022-05-10 17:19:39,608-[log_response:224]-WARNING-Not Found: /favicon.ico
+2022-05-10 17:19:39,609-[log_message:157]-WARNING-"GET /favicon.ico HTTP/1.1" 404 179
+2022-05-10 18:04:22,010-[log_response:224]-WARNING-Not Found: /favicon.ico
+2022-05-10 18:04:22,012-[log_message:157]-WARNING-"GET /favicon.ico HTTP/1.1" 404 179
+2022-05-10 22:34:32,468-[admin_home:86]-CRITICAL-request_user:GuestAdmin
+2022-05-10 22:34:41,040-[manage_student:657]-CRITICAL-request_user:GuestAdmin
+2022-05-10 22:34:44,030-[manage_staff:646]-CRITICAL-request_user:GuestAdmin
+2022-05-10 22:35:29,985-[admin_home:86]-CRITICAL-request_user:zhangxiyuan
+2022-05-10 22:35:34,228-[manage_staff:646]-CRITICAL-request_user:zhangxiyuan
+2022-05-10 22:35:38,842-[edit_staff:689]-CRITICAL-request_user:zhangxiyuan, form:<tr><th><label for="id_first_name">First name:</label></th><td><input type="text" name="first_name" value="文斌" class="form-control" required id="id_first_name"></td></tr>
+<tr><th><label for="id_last_name">Last name:</label></th><td><input type="text" name="last_name" value="赵" class="form-control" required id="id_last_name"></td></tr>
+<tr><th><label for="id_email">Email:</label></th><td><input type="email" name="email" value="gwb@zxy.link" class="form-control" required id="id_email"></td></tr>
+<tr><th><label for="id_gender">Gender:</label></th><td><select name="gender" class="form-control" id="id_gender">
+  <option value="M" selected>Male</option>
+
+  <option value="F">Female</option>
+
+</select></td></tr>
+<tr><th><label for="id_password">Password:</label></th><td><input type="password" name="password" class="form-control" placeholder="Fill this only if you wish to update password" id="id_password"></td></tr>
+<tr><th><label for="id_profile_pic">Profile pic:</label></th><td><input type="file" name="profile_pic" accept="image/*" class="form-control" id="id_profile_pic"></td></tr>
+<tr><th><label for="id_address">Address:</label></th><td><textarea name="address" cols="40" rows="10" class="form-control" required id="id_address">
+CUMT-CS</textarea></td></tr>
+<tr><th><label for="id_course">Course:</label></th><td><select name="course" class="form-control" required id="id_course">
+  <option value="">---------</option>
+
+  <option value="1" selected>算法设计与分析</option>
+
+  <option value="2">数据结构</option>
+
+  <option value="3">计算机网络</option>
+
+  <option value="4">网络安全</option>
+
+  <option value="5">高等数学</option>
+
+  <option value="6">大学英语A1</option>
+
+  <option value="7">计算机组成原理</option>
+
+  <option value="8">操作系统安全</option>
+
+  <option value="9">微机原理与接口</option>
+
+  <option value="10">Java语言与网络编程</option>
+
+  <option value="11">数据库原理与应用</option>
+
+</select></td></tr>
+2022-05-10 22:35:57,257-[edit_staff:689]-CRITICAL-request_user:zhangxiyuan, form:<tr><th><label for="id_first_name">First name:</label></th><td><input type="text" name="first_name" value="文斌" class="form-control" required id="id_first_name"></td></tr>
+<tr><th><label for="id_last_name">Last name:</label></th><td><input type="text" name="last_name" value="郭" class="form-control" required id="id_last_name"></td></tr>
+<tr><th><label for="id_email">Email:</label></th><td><input type="email" name="email" value="gwb@zxy.link" class="form-control" required id="id_email"></td></tr>
+<tr><th><label for="id_gender">Gender:</label></th><td><select name="gender" class="form-control" id="id_gender">
+  <option value="M" selected>Male</option>
+
+  <option value="F">Female</option>
+
+</select></td></tr>
+<tr><th><label for="id_password">Password:</label></th><td><input type="password" name="password" class="form-control" placeholder="Fill this only if you wish to update password" id="id_password"></td></tr>
+<tr><th><label for="id_profile_pic">Profile pic:</label></th><td><input type="file" name="profile_pic" accept="image/*" class="form-control" id="id_profile_pic"></td></tr>
+<tr><th><label for="id_address">Address:</label></th><td><textarea name="address" cols="40" rows="10" class="form-control" required id="id_address">
+CUMT-CS</textarea></td></tr>
+<tr><th><label for="id_course">Course:</label></th><td><select name="course" class="form-control" required id="id_course">
+  <option value="">---------</option>
+
+  <option value="1" selected>算法设计与分析</option>
+
+  <option value="2">数据结构</option>
+
+  <option value="3">计算机网络</option>
+
+  <option value="4">网络安全</option>
+
+  <option value="5">高等数学</option>
+
+  <option value="6">大学英语A1</option>
+
+  <option value="7">计算机组成原理</option>
+
+  <option value="8">操作系统安全</option>
+
+  <option value="9">微机原理与接口</option>
+
+  <option value="10">Java语言与网络编程</option>
+
+  <option value="11">数据库原理与应用</option>
+
+</select></td></tr>
+2022-05-10 22:35:57,432-[edit_staff:689]-CRITICAL-request_user:zhangxiyuan, form:<tr><th><label for="id_first_name">First name:</label></th><td><input type="text" name="first_name" value="文斌" class="form-control" required id="id_first_name"></td></tr>
+<tr><th><label for="id_last_name">Last name:</label></th><td><input type="text" name="last_name" value="郭" class="form-control" required id="id_last_name"></td></tr>
+<tr><th><label for="id_email">Email:</label></th><td><input type="email" name="email" value="gwb@zxy.link" class="form-control" required id="id_email"></td></tr>
+<tr><th><label for="id_gender">Gender:</label></th><td><select name="gender" class="form-control" id="id_gender">
+  <option value="M" selected>Male</option>
+
+  <option value="F">Female</option>
+
+</select></td></tr>
+<tr><th><label for="id_password">Password:</label></th><td><input type="password" name="password" class="form-control" placeholder="Fill this only if you wish to update password" id="id_password"></td></tr>
+<tr><th><label for="id_profile_pic">Profile pic:</label></th><td><input type="file" name="profile_pic" accept="image/*" class="form-control" id="id_profile_pic"></td></tr>
+<tr><th><label for="id_address">Address:</label></th><td><textarea name="address" cols="40" rows="10" class="form-control" required id="id_address">
+CUMT-CS</textarea></td></tr>
+<tr><th><label for="id_course">Course:</label></th><td><select name="course" class="form-control" required id="id_course">
+  <option value="">---------</option>
+
+  <option value="1" selected>算法设计与分析</option>
+
+  <option value="2">数据结构</option>
+
+  <option value="3">计算机网络</option>
+
+  <option value="4">网络安全</option>
+
+  <option value="5">高等数学</option>
+
+  <option value="6">大学英语A1</option>
+
+  <option value="7">计算机组成原理</option>
+
+  <option value="8">操作系统安全</option>
+
+  <option value="9">微机原理与接口</option>
+
+  <option value="10">Java语言与网络编程</option>
+
+  <option value="11">数据库原理与应用</option>
+
+</select></td></tr>
+2022-05-10 22:36:34,437-[manage_student:657]-CRITICAL-request_user:zhangxiyuan
+2022-05-10 22:39:20,067-[manage_student:657]-CRITICAL-request_user:zhangxiyuan
+2022-05-10 22:39:30,441-[manage_student:657]-CRITICAL-request_user:zhangxiyuan
+2022-05-10 22:39:35,579-[manage_student:657]-CRITICAL-request_user:zhangxiyuan
+2022-05-10 22:39:47,093-[manage_student:657]-CRITICAL-request_user:zhangxiyuan

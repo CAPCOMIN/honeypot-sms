@@ -1,0 +1,47 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block page_title %}{{page_title}}{% endblock page_title %}
+
+{% block content %}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">{{page_title}}</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>在线平台</th>
+                                    <th>链接</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for u in urls %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{u.platform}}</td>
+{#                                    <td>{{u.url|safe}}</td>  本处可绕过防御，完成XSS攻击 #}
+{#                                    <td>{{u.url}}</td>  本处使用了django的防御，无法完成XSS #}
+                                    <td> <a target="_blank" href='{{u.url}}'> {{u.url}}</a></td>
+                                    <td>
+                                        <a href="{% url 'delete_online_teaching_url' u.id %}" onclick="return confirm('确定要删除吗?')" class="btn btn-danger">删除</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

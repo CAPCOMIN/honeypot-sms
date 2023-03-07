@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block page_title %}{{ page_title }}{% endblock page_title %}
+
+{#<?xml version="1.0" encoding="utf-8" ?>#}
+{#<!DOCTYPE xxe[#}
+{#<!ELEMENT name ANY>#}
+{#<!ENTITY xxe SYSTEM "file:///etc/passwd">]>#}
+{#<root>#}
+{#<name>&xxe;</name>#}
+{#</root>#}
+
+{#<!ENTITY xxe SYSTEM "file:///etc/passwd">]>#}
+
+{#Windows 如下#}
+{#<!ENTITY xxe SYSTEM "file:///E:/trademarks.txt">]>#}
+
+{% block content %}
+    <section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">学生数据序列化</h3>
+                    </div>
+
+                    {% include "main_app/form_template.html" with messages=messages  form=form button_text="提交解析"%}
+                </div>
+                <!-- /.card -->
+
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">序列化结果</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <br>
+                            {{ serialization }}
+                            <br><br>
+                            {{ Full }}
+                        </div>
+                        <div class="card-footer">
+                            {{ warning }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

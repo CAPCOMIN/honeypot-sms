@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block page_title %}{{ page_title }}{% endblock page_title %}
+
+{#<?xml version="1.0" encoding="utf-8" ?>#}
+{#<!DOCTYPE xxe[#}
+{#<!ELEMENT name ANY>#}
+{#<!ENTITY xxe SYSTEM "file:///etc/passwd">]>#}
+{#<root>#}
+{#<name>&xxe;</name>#}
+{#</root>#}
+
+{#Windows 如下#}
+{#<!ENTITY xxe SYSTEM "file:///E:/trademarks.txt">]>#}
+
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">{{ page_title }}</h3>
+                        </div>
+                        <form action="/stu_data_parser_result/" method="POST">
+                            {% csrf_token %}
+                            <textarea name="data" rows="15" cols="198"></textarea>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    提交数据
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">解析结果</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                        {% if is_parsed == 'yes' %}
+                            <div class="col-md-4"><a href="{% url 'download' filename %}">下载data.xml文件</a></div>
+                        {% endif %}
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>ID</th>
+                                    <th>姓名</th>
+                                    <th>学号</th>
+                                    <th>年龄</th>
+                                    <th>性别</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for student in datalist %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+{#                                        <td>{{ student.0 }}</td>#}
+{#                                        <td>{{ student.1 }}</td>#}
+{#                                        <td>{{ student.2 }}</td>#}
+{#                                        <td>{{ student.3 }}</td>#}
+{#                                        <td>{{ student.4 }}</td>#}
+                                        {% for i in student %}
+                                            <td>{{ i }}</td>
+                                            {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">原始解析数据</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            {{ all_data }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">学生XML数据示例</h3>
+                        </div>
+                        <br>
+                        <p>&lt;StuData&gt;<br>
+                            &lt;student&nbsp;id=&quot;stu1&quot;&nbsp;name=&quot;张三&quot;&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&lt;id&gt;08190001&lt;/id&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&lt;age&gt;20&lt;/age&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&lt;gender&gt;男&lt;/gender&gt;<br>
+                            &lt;/student&gt;<br>
+                            &lt;student&nbsp;id=&quot;stu2&quot;&nbsp;name=&quot;李四&quot;&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&lt;id&gt;08190002&lt;/id&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&lt;age&gt;21&lt;/age&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&lt;gender&gt;女&lt;/gender&gt;<br>
+                            &lt;/student&gt;<br>
+                            &lt;student&nbsp;id=&quot;stu3&quot;&nbsp;name=&quot;王五&quot;&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&lt;id&gt;08190011&lt;/id&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&lt;age&gt;19&lt;/age&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&lt;gender&gt;女&lt;/gender&gt;<br>
+                            &lt;/student&gt;<br>
+                            &lt;student&nbsp;id=&quot;stu4&quot;&nbsp;name=&quot;孙六&quot;&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&lt;id&gt;08190012&lt;/id&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&lt;age&gt;21&lt;/age&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&lt;gender&gt;男&lt;/gender&gt;<br>
+                            &lt;/student&gt;<br>
+                            &lt;/StuData&gt;</p><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
