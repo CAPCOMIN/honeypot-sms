@@ -132,6 +132,7 @@ MIDDLEWARE = [
 
     # My Middleware
     'main_app.middleware.LoginCheckMiddleWare',
+    'main_app.middleware.OpLogsMiddleWare',
 ]
 
 ROOT_URLCONF = 'student_management_system.urls'
