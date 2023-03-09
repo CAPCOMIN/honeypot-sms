@@ -1,13 +1,23 @@
+from django.contrib.auth.models import AnonymousUser
+from django.http import StreamingHttpResponse, HttpResponse
 from django.utils.deprecation import MiddlewareMixin
 from django.urls import reverse
 from django.shortcuts import redirect
 import time
 import json
-from main_app.models import OpLogs, AccessTimeOutLogs
+from main_app.models import OpLogs, AccessTimeOutLogs, CustomUser
+
+
+def wrap_streaming_content(content):
+    byte = 0
+    for chunk in content:
+        yield len(chunk)
+        byte += len(chunk)
+    return byte
 
 
 class OpLogsMiddleWare(MiddlewareMixin):
-    __exclude_urls = ['123']  # 定义不需要记录日志的url名单
+    __exclude_urls = []  # 定义不需要记录日志的url名单
 
     def __init__(self, *args):
         super(OpLogsMiddleWare, self).__init__(*args)
@@ -54,9 +64,14 @@ class OpLogsMiddleWare(MiddlewareMixin):
                 're_ip': re_ip,  # 请求IP
                 're_content': re_content,  # 请求参数
                 # 're_user': request.user.username    # 操作人(需修改)，网站登录用户
-                're_user': 'AnonymousUser'  # 匿名操作用户测试
+                # 're_user': 'AnonymousUser'  # 匿名操作用户测试
             }
         )
+
+        if str(request.user) != 'AnonymousUser':
+            self.data['re_user'] = CustomUser.objects.get(email=request.user.email)
+        else:
+            self.data['re_user'] = CustomUser.objects.get(email='AnonymousUser@zxy.link')
 
     def process_response(self, request, response):
         """
@@ -66,13 +81,23 @@ class OpLogsMiddleWare(MiddlewareMixin):
         :return: response
         """
         # 请求url在 exclude_urls中，直接return，不保存操作日志记录
+        global rp_content
         for url in self.__exclude_urls:
             if url in self.data.get('re_url'):
                 return response
 
         # 获取响应数据字符串(多用于API, 返回JSON字符串)
-        rp_content = response.content.decode()
+        # print(response.status_code)
+        # print(response.reason_phrase)
+        if isinstance(response, HttpResponse):
+            # print('HttpResponse')
+            rp_content = response.content.decode()
+        elif isinstance(response, StreamingHttpResponse):
+            rp_content = str(list(response.streaming_content).__sizeof__())+' bytes of streaming content'
+            # print('StreamingHttpResponse')
+
         self.data['rp_content'] = rp_content
+        self.data['rp_status_code'] = str(response.status_code)
 
         # 耗时
         self.end_time = time.time()  # 响应时间
@@ -107,7 +132,7 @@ class LoginCheckMiddleWare(MiddlewareMixin):
         else:
             if request.path == reverse(
                     'login_page') or modulename == 'django.contrib.auth.views' or request.path == reverse(
-                    'user_login'):  # If the path is login or has anything to do with authentication, pass
+                'user_login'):  # If the path is login or has anything to do with authentication, pass
                 pass
             else:
                 return redirect(reverse('login_page'))
