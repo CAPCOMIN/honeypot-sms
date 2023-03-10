@@ -35,7 +35,7 @@ class OpLogsMiddleWare(MiddlewareMixin):
         """
 
         self.start_time = time.time()  # 开始时间
-        re_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())  # 请求时间（北京）
+        # re_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())  # 请求时间（北京）
 
         # 请求IP
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -58,7 +58,7 @@ class OpLogsMiddleWare(MiddlewareMixin):
 
         self.data.update(
             {
-                're_time': re_time,  # 请求时间
+                # 're_time': re_time,  # 请求时间
                 're_url': request.path,  # 请求url
                 're_method': re_method,  # 请求方法
                 're_ip': re_ip,  # 请求IP
@@ -93,8 +93,11 @@ class OpLogsMiddleWare(MiddlewareMixin):
             # print('HttpResponse')
             rp_content = response.content.decode()
         elif isinstance(response, StreamingHttpResponse):
-            rp_content = str(list(response.streaming_content).__sizeof__())+' bytes of streaming content'
-            # print('StreamingHttpResponse')
+            rp_content = str(response.streaming_content.__sizeof__())+' bytes of streaming content'
+            # rp_content = 'streaming content'
+            # todo streaming size
+            print('StreamingHttpResponse')
+            print(rp_content)
 
         self.data['rp_content'] = rp_content
         self.data['rp_status_code'] = str(response.status_code)

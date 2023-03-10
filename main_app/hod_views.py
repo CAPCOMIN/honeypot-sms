@@ -88,9 +88,14 @@ def admin_home(request):
 
 
 def convenient_calc(request):
-    test = {'page_title': '便捷计算器'}
-    logger.critical("request_user:" + str(request.user))
-    return render(request, 'hod_template/calculator.html', test)
+    switch = VulnSwitch.objects.get(module='calc').mode
+    # print(switch)
+    if switch == 3:
+        return render(request, 'hod_template/denied.html')
+    else:
+        test = {'page_title': '便捷计算器'}
+        logger.critical("request_user:" + str(request.user))
+        return render(request, 'hod_template/calculator.html', test)
 
 
 def calculated(request):
@@ -99,17 +104,34 @@ def calculated(request):
     formula = request.POST
     formula = formula['formula']
     print(formula)
-    try:
-        result = eval(formula, {'__builtins__': None, 'abs': abs}, {'__builtins__': None, 'abs': abs})
-        # result=ast.literal_eval(formula)
-        # result = eval(formula)  # 命令注入
-    except:
-        result = '无效公式'
-    l = {'page_title': '便捷计算器'}
-    print(result)
-    l['res'] = result
-    logger.critical("request_user:" + str(request.user) + ", formula:" + str(formula) + ", result:" + str(result))
-    return render(request, 'hod_template/calculator.html', l)
+    switch = VulnSwitch.objects.get(module='calc').mode
+    if switch == 1:
+        try:
+            # result=eval(formula,{},{})
+            # result=ast.literal_eval(formula)
+            result = eval(formula)  # 命令注入
+        except:
+            result = '无效公式'
+        l = {'page_title': '便捷计算器'}
+        print(result)
+        l['res'] = result
+        return render(request, 'hod_template/calculator.html', l)
+    elif switch == 2:
+        try:
+            result = eval(formula, {'__builtins__': None, 'abs': abs}, {'__builtins__': None, 'abs': abs})
+            # result=ast.literal_eval(formula)
+            # result = eval(formula)  # 命令注入
+        except:
+            result = '无效公式'
+        l = {'page_title': '便捷计算器'}
+        print(result)
+        l['res'] = result
+        logger.critical("request_user:" + str(request.user) + ", formula:" + str(formula) + ", result:" + str(result))
+        return render(request, 'hod_template/calculator.html', l)
+    elif switch == 3:
+        l = {'page_title': 'Access Denied',
+             'res': '-'}
+        return render(request, 'hod_template/calculator.html', l)
 
 
 def search(request):
@@ -122,8 +144,8 @@ def searchResult(request):
     firstName = request.GET['f']
     try:
         result = CustomUser.objects.filter(Q(first_name__contains=firstName) |
-                                       Q(last_name__contains=firstName) |
-                                       Q(last_name__contains=firstName[0], first_name__contains=firstName[1:]))
+                                           Q(last_name__contains=firstName) |
+                                           Q(last_name__contains=firstName[0], first_name__contains=firstName[1:]))
     except Exception as e:
         messages.error(request, "搜索无效, " + str(e))
         result = ''
@@ -265,7 +287,7 @@ def stu_data_parser_result(request):
             'is_parsed': 'yes'
         }
         messages.success(request, "学生XML数据已被成功解析！")
-        logger.critical("request_user:" + str(request.user)+', content:'+str(content))
+        logger.critical("request_user:" + str(request.user) + ', content:' + str(content))
         return render(request, "hod_template/stu_data_parser.html", context)
 
 
@@ -326,7 +348,7 @@ def serialize_stu_parser(request):
                 'serialization': serializedStu,
                 'warning': '✔ __reduce__() 函数未启用'
             }
-    logger.critical("request_user:" + str(request.user)+', form:'+str(form))
+    logger.critical("request_user:" + str(request.user) + ', form:' + str(form))
     return render(request, 'hod_template/serialized_data_parser.html', content)
 
 
@@ -1031,8 +1053,8 @@ def admin_view_profile(request):
         admin = Admin.objects.get(admin=request.user)
     except:
         context = {
-                   'page_title': '管理员已禁用此模块'
-                   }
+            'page_title': '管理员已禁用此模块'
+        }
         return render(request, "hod_template/admin_view_profile.html", context)
     form = AdminForm(request.POST or None, request.FILES or None,
                      instance=admin)

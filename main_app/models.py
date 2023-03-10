@@ -5,6 +5,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib import admin
 
 
 class CustomUserManager(UserManager):
@@ -38,12 +39,12 @@ class Session(models.Model):
 
 
 class CustomUser(AbstractUser):
-    USER_TYPE = ((1, "HOD"), (2, "Staff"), (3, "Student"))
+    USER_TYPE = (('1', "Administrator"), ('2', "Staff"), ('3', "Student"))
     GENDER = [("M", "Male"), ("F", "Female")]
 
     username = None  # Removed username, using email instead
     email = models.EmailField(unique=True)
-    user_type = models.CharField(default=1, choices=USER_TYPE, max_length=1)
+    user_type = models.CharField(default=1, choices=USER_TYPE, max_length=2)
     gender = models.CharField(max_length=1, choices=GENDER)
     profile_pic = models.ImageField()
     address = models.TextField()
@@ -58,19 +59,49 @@ class CustomUser(AbstractUser):
         return self.last_name + self.first_name
 
 
+class VulnSwitch(models.Model):
+    MODE = [(1, "Vulnerable"), (2, "Optimized"), (3, "Disabled")]
+    id = models.AutoField(primary_key=True)
+    module = models.CharField(max_length=255)
+    mode = models.IntegerField(choices=MODE)
+    auth = models.ForeignKey(CustomUser, to_field='email', on_delete=models.CASCADE, )
+
+    class Meta:
+        db_table = 'vuln_switch'
+
+
 class OpLogs(models.Model):
     """操作日志表"""
-
     id = models.AutoField(primary_key=True)
-    re_time = models.CharField(max_length=32, verbose_name='请求时间')
-    re_user = models.ForeignKey(CustomUser, blank=True, to_field='email', on_delete=models.CASCADE, max_length=32, verbose_name='操作人')
+    re_time = models.DateTimeField(auto_now_add=True, verbose_name='请求时间')
+    re_user = models.ForeignKey(CustomUser, blank=True, to_field='email', on_delete=models.CASCADE, max_length=32,
+                                verbose_name='操作人')
     re_ip = models.CharField(max_length=32, verbose_name='请求IP')
     re_url = models.CharField(max_length=255, verbose_name='请求url')
     re_method = models.CharField(max_length=11, verbose_name='请求方法')
     re_content = models.TextField(null=True, verbose_name='请求参数')
     rp_content = models.TextField(null=True, verbose_name='响应参数')
     access_time = models.IntegerField(verbose_name='响应耗时/ms')
-    rp_status_code = models.CharField(max_length=32,blank=True, verbose_name='HTTP 状态码')
+    rp_status_code = models.CharField(max_length=32, blank=True, verbose_name='HTTP 状态码')
+
+    # 判断指定字段长度,超出部分用省略号代替
+    def update_re_content(self):
+        if len(str(self.re_content)) > 35:
+            return '{}...'.format(str(self.re_content)[0:35])
+        else:
+            return self.re_content
+
+    def update_rp_content(self):
+        if len(str(self.rp_content)) > 35:
+            return '{}...'.format(str(self.rp_content)[0:35])
+        else:
+            return self.rp_content
+
+    # def update_url(self):
+    #     if len(str(self.re_url)) > 35:
+    #         return '{}...'.format(str(self.re_url)[0:35])
+    #     else:
+    #         return self.re_url
 
     class Meta:
         db_table = 'op_logs'
@@ -81,7 +112,8 @@ class AccessTimeOutLogs(models.Model):
 
     id = models.AutoField(primary_key=True)
     re_time = models.CharField(max_length=32, verbose_name='请求时间')
-    re_user = models.ForeignKey(CustomUser, blank=True, to_field='email', on_delete=models.CASCADE, max_length=32, verbose_name='操作人')
+    re_user = models.ForeignKey(CustomUser, blank=True, to_field='email', on_delete=models.CASCADE, max_length=32,
+                                verbose_name='操作人')
     re_ip = models.CharField(max_length=32, verbose_name='请求IP')
     re_url = models.CharField(max_length=255, verbose_name='请求url')
     re_method = models.CharField(max_length=11, verbose_name='请求方法')

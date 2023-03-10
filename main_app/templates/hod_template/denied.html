@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block page_title %}Access Denied{% endblock page_title %}
+
+{% block content %}
+
+    {#<body>#}
+    {#{% include "main_app/form_template.html" with messages=messages  form=form button_text="请输入想要计算的数学计算式"%}#}
+    {#    <h3>请输入想要计算的数学计算式</h3>#}
+    {#    <form action="/fin_calc/" method="get">#}
+    {#        <input type="text" name="formula">#}
+    {#        <input type="submit" value="计算">#}
+    {#    </form>#}
+    {#    <p>{{res}}</p>#}
+    {#</body>#}
+{#    <section class="content">#}
+{#        <div class="container-fluid">#}
+{#            <div class="row">#}
+{#                <div class="col-md-12">#}
+{#                    <!-- general form elements -->#}
+{#                    <div class="card card-primary">#}
+{#                        <div class="card-header">#}
+{#                            <h3 class="card-title">请输入想要计算的数学计算式</h3>#}
+{#                        </div>#}
+{#                        <form action="/fin_calc/" method="POST">#}
+{#                            {% csrf_token %}#}
+                            {#  <form action="/fin_calc/" role="form" method="GET" enctype="multipart/form-data">#}
+{#                            <div class="card-body">#}
+{#                                <input type="text" name="formula">#}
+                                {#                                    <input type="submit" value="计算">#}
+{#                            </div>#}
+{#                            <!-- /.card-body -->#}
+{#                            <div class="card-footer">#}
+{#                                <button type="submit" class="btn btn-primary btn-block">#}
+{#                                    开始计算#}
+{#                                </button>#}
+{#                            </div>#}
+{#                        </form>#}
+{##}
+{#                    </div>#}
+{#                    <!-- /.card -->#}
+{##}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+<br><br><br>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-danger">
+                        <div class="card-header">
+                            <h3 class="card-title">Access Denied</h3>
+                        </div>
+                        <br><br>
+                        <h1 class="btn  btn-block"><b>You do not have permission to access this module, or an administrator has disabled this module.</b></h1>
+                        {#                        <p>{{ res }}</p>#}
+                        <br><br>
+
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
