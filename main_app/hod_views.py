@@ -5,7 +5,7 @@ import platform
 import requests
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
 from django.shortcuts import (HttpResponse, HttpResponseRedirect,
                               get_object_or_404, redirect, render)
 from django.templatetags.static import static
@@ -25,7 +25,7 @@ import main_app.admin
 from .forms import *
 from .models import *
 
-import os
+import sys
 import logging
 
 from .pystrich.code128 import Code128Encoder
@@ -88,7 +88,7 @@ def admin_home(request):
 
 
 def convenient_calc(request):
-    switch = VulnSwitch.objects.get(module='calc').mode
+    switch = VulnSwitch.objects.get(module='calculated').mode
     # print(switch)
     if switch == 3:
         return render(request, 'hod_template/denied.html')
@@ -99,12 +99,14 @@ def convenient_calc(request):
 
 
 def calculated(request):
-    print(request.user)
+    # print(request.user)
     # formula = request.GET['formula']
     formula = request.POST
     formula = formula['formula']
-    print(formula)
-    switch = VulnSwitch.objects.get(module='calc').mode
+    # print(formula)
+    funcName = sys._getframe().f_code.co_name
+    # print(sys._getframe().f_code.co_name)
+    switch = VulnSwitch.objects.get(module=str(funcName)).mode
     if switch == 1:
         try:
             # result=eval(formula,{},{})
@@ -135,26 +137,53 @@ def calculated(request):
 
 
 def search(request):
-    title = {'page_title': '数据查询'}
-    logger.critical("request_user:" + str(request.user))
-    return render(request, 'hod_template/search.html', title)
+    switch = VulnSwitch.objects.get(module='search').mode
+    # print(switch)
+    if switch == 3:
+        return render(request, 'hod_template/denied.html')
+    else:
+        title = {'page_title': '数据查询'}
+        logger.critical("request_user:" + str(request.user))
+        return render(request, 'hod_template/search.html', title)
 
 
 def searchResult(request):
-    firstName = request.GET['f']
-    try:
-        result = CustomUser.objects.filter(Q(first_name__contains=firstName) |
-                                           Q(last_name__contains=firstName) |
-                                           Q(last_name__contains=firstName[0], first_name__contains=firstName[1:]))
-    except Exception as e:
-        messages.error(request, "搜索无效, " + str(e))
-        result = ''
-    print(result)
-    m = {'m': result,
-         'page_title': '数据查询'}
-    print(m)
-    logger.critical("request_user:" + str(request.user) + ", f:" + str(firstName) + ", f:" + str(result))
-    return render(request, 'hod_template/search.html', m)
+    switch = VulnSwitch.objects.get(module='search').mode
+    if switch == 1:
+        result = []
+        con = sqlite3.connect('db.sqlite3')
+        firstName = request.GET['f']
+        print(firstName)
+        db = con.cursor()
+        print("Connected database successfully.")
+        dbResult = db.execute(
+            "select last_name,first_name,email,gender from main_app_customuser where first_name = '" + firstName + "'")
+        for row in dbResult:
+            print(row)
+            result.append(row)
+        con.close()
+        print(result)
+        m = {'m': result,
+             'page_title': '数据查询'
+             # 'ln':result[0]
+             }
+        print(m)
+        return render(request, 'hod_template/search.html', m)
+    elif switch == 2:
+        firstName = request.GET['f']
+        try:
+            result = CustomUser.objects.filter(Q(first_name__contains=firstName) |
+                                               Q(last_name__contains=firstName) |
+                                               Q(last_name__contains=firstName[0], first_name__contains=firstName[1:]))
+        except Exception as e:
+            messages.error(request, "搜索无效, " + str(e))
+            result = ''
+        print(result)
+        m = {'m': result,
+             'page_title': '数据查询'}
+        print(m)
+        logger.critical("request_user:" + str(request.user) + ", f:" + str(firstName) + ", f:" + str(result))
+        return render(request, 'hod_template/search.html', m)
 
 
 def upload_and_show_group_photo(request):
@@ -236,59 +265,115 @@ def stu_data_parser(request):
         'filename': 'data.xml'
     }
     logger.critical("request_user:" + str(request.user))
-    return render(request, "hod_template/stu_data_parser.html", context)
+
+    switch = VulnSwitch.objects.get(module='stu_data_parser').mode
+    # print(switch)
+    if switch == 3:
+        return render(request, 'hod_template/denied.html')
+    else:
+        return render(request, "hod_template/stu_data_parser.html", context)
 
 
 def stu_data_parser_result(request):
-    if request.method == 'POST':
-        content = request.POST
-        xml_data = list(content['data'].replace("\r", ""))
-        # print(xml_data)
-        try:
-            f = open("./media/data.xml", "w", encoding='utf-8')
-            for x in xml_data:
-                f.write(x)
-            # f.write('\n')
-            f.close()
-        except IOError:
-            messages.error(request, "文件读写错误, " + str(IOError))
-        parser = etree.XMLParser(load_dtd=False, resolve_entities=False, no_network=True)
-        datalist = []
-        root = {}
-        all_data = ''
-        try:
-            tree = etree.parse("./media/data.xml", parser=parser)
-            etree.dump(tree.getroot())
-            root = tree.getroot()
+    switch = VulnSwitch.objects.get(module='stu_data_parser').mode
+    if switch == 1:
+        if request.method == 'POST':
+            content = request.POST
+            xml_data = list(content['data'].replace("\r", ""))
+            # print(xml_data)
+            try:
+                f = open("data.xml", "w", encoding='utf-8')
+                for x in xml_data:
+                    f.write(x)
+                # f.write('\n')
+                f.close()
+            except IOError:
+                messages.error(request, "文件读写错误, " + str(IOError))
+            parser = etree.XMLParser(load_dtd=True, no_network=True)
+            datalist = []
+            root = {}
+            all_data = ''
+            try:
+                tree = etree.parse("data.xml", parser=parser)
+                etree.dump(tree.getroot())
+                root = tree.getroot()
 
-            for i in root:
-                all_data = i.text
-            for stu in root:
-                temp = [stu.attrib["id"], stu.attrib["name"], stu[0].text, stu[1].text, stu[2].text]
-                print("****")
-                print(stu)
-                # temp = ['1', '2', stu[0].text]
-                datalist.append(temp)
-        except Exception as e:
-            messages.warning(request, "警告：数据解析错误，您可能提交了包含错误格式的数据！\n" + repr(e))
+                for i in root:
+                    all_data = i.text
+                for stu in root:
+                    temp = [stu.attrib["id"], stu.attrib["name"], stu[0].text, stu[1].text, stu[2].text]
+                    print("****")
+                    print(stu)
+                    # temp = ['1', '2', stu[0].text]
+                    datalist.append(temp)
+            except Exception as e:
+                messages.warning(request, "警告：数据解析错误，您可能提交了包含错误格式的数据！\n" + repr(e))
+                context = {
+                    'page_title': '学生XML数据解析',
+                    'filename': 'data.xml',
+                    'datalist': datalist,
+                    'all_data': all_data,
+                }
+                return render(request, "hod_template/stu_data_parser.html", context)
             context = {
                 'page_title': '学生XML数据解析',
-                'filename': 'data.xml',
                 'datalist': datalist,
                 'all_data': all_data,
+                'filename': 'data.xml',
+                'is_parsed': 'yes'
             }
+            messages.success(request, "学生XML数据已被成功解析！")
             return render(request, "hod_template/stu_data_parser.html", context)
-        all_data = "✔ 已禁用外部实体，无相关数据"
-        context = {
-            'page_title': '学生XML数据解析',
-            'datalist': datalist,
-            'all_data': all_data,
-            'filename': 'data.xml',
-            'is_parsed': 'yes'
-        }
-        messages.success(request, "学生XML数据已被成功解析！")
-        logger.critical("request_user:" + str(request.user) + ', content:' + str(content))
-        return render(request, "hod_template/stu_data_parser.html", context)
+    elif switch == 2:
+        if request.method == 'POST':
+            content = request.POST
+            xml_data = list(content['data'].replace("\r", ""))
+            # print(xml_data)
+            try:
+                f = open("./media/data.xml", "w", encoding='utf-8')
+                for x in xml_data:
+                    f.write(x)
+                # f.write('\n')
+                f.close()
+            except IOError:
+                messages.error(request, "文件读写错误, " + str(IOError))
+            parser = etree.XMLParser(load_dtd=False, resolve_entities=False, no_network=True)
+            datalist = []
+            root = {}
+            all_data = ''
+            try:
+                tree = etree.parse("./media/data.xml", parser=parser)
+                etree.dump(tree.getroot())
+                root = tree.getroot()
+
+                for i in root:
+                    all_data = i.text
+                for stu in root:
+                    temp = [stu.attrib["id"], stu.attrib["name"], stu[0].text, stu[1].text, stu[2].text]
+                    print("****")
+                    print(stu)
+                    # temp = ['1', '2', stu[0].text]
+                    datalist.append(temp)
+            except Exception as e:
+                messages.warning(request, "警告：数据解析错误，您可能提交了包含错误格式的数据！\n" + repr(e))
+                context = {
+                    'page_title': '学生XML数据解析',
+                    'filename': 'data.xml',
+                    'datalist': datalist,
+                    'all_data': all_data,
+                }
+                return render(request, "hod_template/stu_data_parser.html", context)
+            all_data = "✔ 已禁用外部实体，无相关数据"
+            context = {
+                'page_title': '学生XML数据解析',
+                'datalist': datalist,
+                'all_data': all_data,
+                'filename': 'data.xml',
+                'is_parsed': 'yes'
+            }
+            messages.success(request, "学生XML数据已被成功解析！")
+            logger.critical("request_user:" + str(request.user) + ', content:' + str(content))
+            return render(request, "hod_template/stu_data_parser.html", context)
 
 
 # class StuFullData(object):
@@ -354,13 +439,25 @@ def serialize_stu_parser(request):
 
 def download(request, *args, **kwargs):
     from django.http import FileResponse
-    downloadFile = str(kwargs['filename'])
-    file = open('./media/' + downloadFile, 'rb')
-    response = FileResponse(file)
-    response['Content-Type'] = 'application/octet-stream'  # 设置头信息，告诉浏览器这是个文件
-    response['Content-Disposition'] = 'attachment;filename=' + '"' + downloadFile + '"'
-    logger.critical("request_user:" + str(request.user) + ', downloadFile:' + str(kwargs['filename']))
-    return response
+    switch = VulnSwitch.objects.get(module='download').mode
+    if switch == 1:
+        downloadFile = str(kwargs['filename'])
+        file = open('./' + downloadFile, 'rb')
+        response = FileResponse(file)
+        response['Content-Type'] = 'application/octet-stream'  # 设置头信息，告诉浏览器这是个文件
+        response['Content-Disposition'] = 'attachment;filename=' + '"' + downloadFile + '"'
+        return response
+    elif switch == 2:
+        downloadFile = str(kwargs['filename'])
+        file = open('./media/' + downloadFile, 'rb')
+        response = FileResponse(file)
+        response['Content-Type'] = 'application/octet-stream'  # 设置头信息，告诉浏览器这是个文件
+        response['Content-Disposition'] = 'attachment;filename=' + '"' + downloadFile + '"'
+        logger.critical("request_user:" + str(request.user) + ', downloadFile:' + str(kwargs['filename']))
+        return response
+    elif switch == 3:
+        response = HttpResponseForbidden()
+        return response
 
 
 def add_staff(request):

@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib import admin
+from django.utils.html import format_html
 
 
 class CustomUserManager(UserManager):
@@ -64,7 +65,35 @@ class VulnSwitch(models.Model):
     id = models.AutoField(primary_key=True)
     module = models.CharField(max_length=255)
     mode = models.IntegerField(choices=MODE)
+    page_url = models.CharField(max_length=127)
+    action_url = models.CharField(max_length=127)
+    description = models.CharField(max_length=255)
     auth = models.ForeignKey(CustomUser, to_field='email', on_delete=models.CASCADE, )
+
+    def search_page_url(self):
+        return format_html('<a href="/admin/main_app/oplogs/?q={path}&_popup=1">{path}</a>', path=self.page_url)
+
+    search_page_url.short_description = 'page url'
+
+    def search_action_url(self):
+        return format_html('<a href="/admin/main_app/oplogs/?q={path}&_popup=1">{path}</a>', path=self.action_url)
+
+    search_action_url.short_description = 'action url'
+
+    def colored_mode(self):
+        if self.mode == 1:
+            color_code = '#8B0000'
+        elif self.mode == 2:
+            color_code = '#B5A642'
+        elif self.mode == 3:
+            color_code = '#778899'
+        return format_html(
+            '<span style="color: {};">{}</span>',
+            color_code,
+            self.MODE[self.mode-1][1],
+        )
+
+    colored_mode.short_description = 'mode'
 
     class Meta:
         db_table = 'vuln_switch'
@@ -82,7 +111,27 @@ class OpLogs(models.Model):
     re_content = models.TextField(null=True, verbose_name='请求参数')
     rp_content = models.TextField(null=True, verbose_name='响应参数')
     access_time = models.IntegerField(verbose_name='响应耗时/ms')
-    rp_status_code = models.CharField(max_length=32, blank=True, verbose_name='HTTP 状态码')
+    rp_status_code = models.CharField(max_length=32, blank=True, verbose_name='HTTP状态码')
+    re_ua = models.CharField(max_length=255, verbose_name='User-Agent')
+
+    def colored_rp_status_code(self):
+        try:
+            if self.rp_status_code[0] == '1' or self.rp_status_code[0] == '2':
+                color_code = 'green'
+            elif self.rp_status_code[0] == '3':
+                color_code = '#FFC133'
+            else:
+                color_code = 'red'
+            return format_html(
+                '<span style="color: {};">{}</span>',
+                color_code,
+                self.rp_status_code,
+            )
+        except IndexError:
+            print('IndexError'+self.rp_status_code)
+            return self.rp_status_code
+
+    colored_rp_status_code.short_description = 'HTTP状态码'
 
     # 判断指定字段长度,超出部分用省略号代替
     def update_re_content(self):
@@ -91,11 +140,15 @@ class OpLogs(models.Model):
         else:
             return self.re_content
 
+    update_re_content.short_description = '响应参数'
+
     def update_rp_content(self):
         if len(str(self.rp_content)) > 35:
             return '{}...'.format(str(self.rp_content)[0:35])
         else:
             return self.rp_content
+
+    update_rp_content.short_description = '请求参数'
 
     # def update_url(self):
     #     if len(str(self.re_url)) > 35:
@@ -111,7 +164,7 @@ class AccessTimeOutLogs(models.Model):
     """超时操作日志表"""
 
     id = models.AutoField(primary_key=True)
-    re_time = models.CharField(max_length=32, verbose_name='请求时间')
+    re_time = models.DateTimeField(auto_now_add=True, verbose_name='请求时间')
     re_user = models.ForeignKey(CustomUser, blank=True, to_field='email', on_delete=models.CASCADE, max_length=32,
                                 verbose_name='操作人')
     re_ip = models.CharField(max_length=32, verbose_name='请求IP')
@@ -120,7 +173,54 @@ class AccessTimeOutLogs(models.Model):
     re_content = models.TextField(null=True, verbose_name='请求参数')
     rp_content = models.TextField(null=True, verbose_name='响应参数')
     access_time = models.IntegerField(verbose_name='响应耗时/ms')
-    rp_status_code = models.CharField(max_length=32, blank=True, verbose_name='HTTP 状态码')
+    rp_status_code = models.CharField(max_length=32, blank=True, verbose_name='HTTP状态码')
+    re_ua = models.CharField(max_length=255, verbose_name='User-Agent')
+
+    def colored_rp_status_code(self):
+        try:
+            if self.rp_status_code[0] == '1' or self.rp_status_code[0] == '2':
+                color_code = 'green'
+            elif self.rp_status_code[0] == '3':
+                color_code = '#FFC133'
+            else:
+                color_code = 'red'
+            return format_html(
+                '<span style="color: {};">{}</span>',
+                color_code,
+                self.rp_status_code,
+            )
+        except IndexError:
+            print('IndexError'+self.rp_status_code)
+            return self.rp_status_code
+
+    colored_rp_status_code.short_description = 'HTTP状态码'
+
+    def colored_access_time(self):
+        color_code = 'red'
+        return format_html(
+            '<span style="color: {};">{}</span>',
+            color_code,
+            self.access_time,
+        )
+
+    colored_access_time.short_description = '响应耗时/ms'
+
+    # 判断指定字段长度,超出部分用省略号代替
+    def update_re_content(self):
+        if len(str(self.re_content)) > 35:
+            return '{}...'.format(str(self.re_content)[0:35])
+        else:
+            return self.re_content
+
+    update_re_content.short_description = '响应参数'
+
+    def update_rp_content(self):
+        if len(str(self.rp_content)) > 35:
+            return '{}...'.format(str(self.rp_content)[0:35])
+        else:
+            return self.rp_content
+
+    update_rp_content.short_description = '请求参数'
 
     class Meta:
         db_table = 'access_timeout_logs'

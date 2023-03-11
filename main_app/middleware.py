@@ -47,6 +47,7 @@ class OpLogsMiddleWare(MiddlewareMixin):
 
         # 请求方法
         re_method = request.method
+        re_ua = request.headers['User-Agent']
 
         # 请求参数
         re_content = request.GET if re_method == 'GET' else request.POST
@@ -65,6 +66,7 @@ class OpLogsMiddleWare(MiddlewareMixin):
                 're_content': re_content,  # 请求参数
                 # 're_user': request.user.username    # 操作人(需修改)，网站登录用户
                 # 're_user': 'AnonymousUser'  # 匿名操作用户测试
+                're_ua': re_ua,
             }
         )
 
