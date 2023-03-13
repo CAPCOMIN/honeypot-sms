@@ -376,20 +376,20 @@ def stu_data_parser_result(request):
             return render(request, "hod_template/stu_data_parser.html", context)
 
 
-# class StuFullData(object):
-#     ID = '08190000'
-#     name = '测试学生'
-#     gender = 'F'
-#     age = 19
-#
-#     def __init__(self, ID, name, gender, age):
-#         self.name = name
-#         self.ID = ID
-#         self.gender = gender
-#         self.age = age
-#
-#     def __reduce__(self):
-#         return subprocess.getoutput, (self.name,)
+class StuFullData(object):
+    ID = '08190000'
+    name = '测试学生'
+    gender = 'F'
+    age = 19
+
+    def __init__(self, ID, name, gender, age):
+        self.name = name
+        self.ID = ID
+        self.gender = gender
+        self.age = age
+
+    def __reduce__(self):
+        return subprocess.getoutput, (self.name,)
 
 
 class StuData(object):
@@ -406,35 +406,71 @@ class StuData(object):
 
 
 def serialize_stu_parser(request):
-    form = SerializeStuParserForm(request.POST or None)
-    content = {'page_title': '序列化学生数据',
-               'form': form}
-    if request.method == 'POST':
-        getData = request.POST
-        stuObj = StuData(getData['StuId'], getData['name'], getData['gender'], getData['age'])
-        serializedStu = pickle.dumps(stuObj)
-        print(serializedStu)
-        if 'isFullData' in getData:
-            print('yes')
-            unSerializedStu = pickle.loads(serializedStu)
-            print(unSerializedStu)
-            content = {
-                'page_title': '序列化学生数据',
-                'form': form,
-                'serialization': serializedStu,
-                'Full': unSerializedStu,
-                'warning': '✔ __reduce__() 函数未启用'
-            }
-        else:
-            print('no')
-            content = {
-                'page_title': '序列化学生数据',
-                'form': form,
-                'serialization': serializedStu,
-                'warning': '✔ __reduce__() 函数未启用'
-            }
-    logger.critical("request_user:" + str(request.user) + ', form:' + str(form))
-    return render(request, 'hod_template/serialized_data_parser.html', content)
+    switch = VulnSwitch.objects.get(module='serialize_stu_parser').mode
+    if switch == 1:
+        form = SerializeStuParserForm(request.POST or None)
+        content = {'page_title': '序列化学生数据',
+                   'form': form}
+        if request.method == 'POST':
+            getData = request.POST
+            if 'isFullData' in getData:
+                print('yes')
+                stuObj = StuFullData(getData['StuId'], getData['name'], getData['gender'], getData['age'])
+                serializedStu = pickle.dumps(stuObj)
+                print(serializedStu)
+                unSerializedStu = pickle.loads(serializedStu)
+                print(unSerializedStu)
+                content = {
+                    'page_title': '序列化学生数据',
+                    'form': form,
+                    'serialization': serializedStu,
+                    'Full': unSerializedStu,
+                    'warning': '⚠ __reduce__() 函数已经启用，可能包含反序列化漏洞'
+                }
+            else:
+                print('no')
+                stuObj = StuData(getData['StuId'], getData['name'], getData['gender'], getData['age'])
+                serializedStu = pickle.dumps(stuObj)
+                print(serializedStu)
+                content = {
+                    'page_title': '序列化学生数据',
+                    'form': form,
+                    'serialization': serializedStu,
+                    'warning': '✔ __reduce__() 函数未启用'
+                }
+        return render(request, 'hod_template/serialized_data_parser.html', content)
+    elif switch == 2:
+        form = SerializeStuParserForm(request.POST or None)
+        content = {'page_title': '序列化学生数据',
+                   'form': form}
+        if request.method == 'POST':
+            getData = request.POST
+            stuObj = StuData(getData['StuId'], getData['name'], getData['gender'], getData['age'])
+            serializedStu = pickle.dumps(stuObj)
+            print(serializedStu)
+            if 'isFullData' in getData:
+                print('yes')
+                unSerializedStu = pickle.loads(serializedStu)
+                print(unSerializedStu)
+                content = {
+                    'page_title': '序列化学生数据',
+                    'form': form,
+                    'serialization': serializedStu,
+                    'Full': unSerializedStu,
+                    'warning': '✔ __reduce__() 函数未启用'
+                }
+            else:
+                print('no')
+                content = {
+                    'page_title': '序列化学生数据',
+                    'form': form,
+                    'serialization': serializedStu,
+                    'warning': '✔ __reduce__() 函数未启用'
+                }
+        logger.critical("request_user:" + str(request.user) + ', form:' + str(form))
+        return render(request, 'hod_template/serialized_data_parser.html', content)
+    elif switch == 3:
+        return render(request, 'hod_template/denied.html')
 
 
 def download(request, *args, **kwargs):

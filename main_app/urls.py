@@ -22,6 +22,7 @@ from django.views import static
 from django.conf import settings
 from django.conf.urls import url
 
+
 urlpatterns = [
     path("", views.login_page, name='login_page'),
     url(r'^static/(?P<path>.*)$', static.serve,

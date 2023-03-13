@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 import time
 import json
 from main_app.models import OpLogs, AccessTimeOutLogs, CustomUser
+from django.contrib import admin
 
 
 def wrap_streaming_content(content):
@@ -95,7 +96,7 @@ class OpLogsMiddleWare(MiddlewareMixin):
             # print('HttpResponse')
             rp_content = response.content.decode()
         elif isinstance(response, StreamingHttpResponse):
-            rp_content = str(response.streaming_content.__sizeof__())+' bytes of streaming content'
+            rp_content = str(response.streaming_content.__sizeof__()) + ' bytes of streaming content'
             # rp_content = 'streaming content'
             # todo streaming size
             print('StreamingHttpResponse')
@@ -135,9 +136,12 @@ class LoginCheckMiddleWare(MiddlewareMixin):
             else:  # None of the aforementioned ? Please take the user to login page
                 return redirect(reverse('login_page'))
         else:
+            print(request.path)
             if request.path == reverse(
-                    'login_page') or modulename == 'django.contrib.auth.views' or request.path == reverse(
-                'user_login'):  # If the path is login or has anything to do with authentication, pass
+                    'login_page') or modulename == 'django.contrib.auth.views' or request.path == reverse('user_login') \
+                    or request.path == 'eM6y7uyZSX78aL9a8/':
+                print('ok')
+                # If the path is login or has anything to do with authentication, pass
                 pass
-            else:
-                return redirect(reverse('login_page'))
+            # else:
+            #     return redirect(reverse('login_page'))
