@@ -140,7 +140,7 @@ class OpLogs(models.Model):
         else:
             return self.re_content
 
-    update_re_content.short_description = '响应参数'
+    update_re_content.short_description = '请求参数'
 
     def update_rp_content(self):
         if len(str(self.rp_content)) > 35:
@@ -148,7 +148,7 @@ class OpLogs(models.Model):
         else:
             return self.rp_content
 
-    update_rp_content.short_description = '请求参数'
+    update_rp_content.short_description = '响应参数'
 
     # def update_url(self):
     #     if len(str(self.re_url)) > 35:
@@ -241,7 +241,8 @@ class Course(models.Model):
 
 class OnlineTeachingPlatformURL(models.Model):
     platform = models.CharField(max_length=20)
-    url = models.URLField(max_length=200)
+    # url = models.URLField(max_length=200)
+    url = models.CharField(max_length=200)
 
     def __str__(self):
         return self.platform + "," + self.url

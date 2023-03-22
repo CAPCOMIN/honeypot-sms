@@ -27,7 +27,7 @@
         <li class="nav-item">
             {% url 'admin_home' as admin_home %}
             <a href="{{ admin_home }}" class="nav-link {% if admin_home == request.path %} active {% endif %}">
-                <i class="nav-icon fas fa-th"></i>
+                <i class="nav-icon fas fa-home"></i>
                 <p>
                     主页
 
@@ -38,64 +38,23 @@
             {% url 'admin_view_profile' as admin_view_profile %}
             <a href="{{ admin_view_profile }}"
                class="nav-link {% if admin_view_profile == request.path %} active {% endif %}">
-                <i class="nav-icon fas fa-th"></i>
+                <i class="nav-icon fas fa-info"></i>
                 <p>
-                    个人信息
+                    管理员个人信息维护
+                </p>
+            </a>
+        </li>
 
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            {% url 'calc' as calc %}
-            <a href="{{ calc }}"
-               class="nav-link {% if calc == request.path %} active {% endif %}">
-                <i class="nav-icon fas fa-th"></i>
+        <li class="nav-item ">
+            <a href="javascript:void(0);" onclick="" class="nav-link">
+                <i class="nav-icon fa fa-school"></i>
                 <p>
-                    便捷计算器
+                    学生信息维护
+                    <i class="right fas fa-angle-left"></i>
                 </p>
             </a>
-        </li>
-        <li class="nav-item">
-            {% url 'search' as search %}
-            <a href="{{ search }}"
-               class="nav-link {% if search == request.path %} active {% endif %}">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                    查询
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            {% url 'group_photo' as group_photo %}
-            <a href="{{ group_photo }}"
-               class="nav-link {% if group_photo == request.path %} active {% endif %}">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                    合影与回忆
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            {% url 'add_online_teaching_url' as add_online_teaching_url %}
-            <a href="{{ add_online_teaching_url }}"
-               class="nav-link {% if add_online_teaching_url == request.path %} active {% endif %}">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                    在线教学平台地址添加
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            {% url 'manage_online_teaching_url' as manage_online_teaching_url %}
-            <a href="{{ manage_online_teaching_url }}"
-               class="nav-link {% if manage_online_teaching_url == request.path %} active {% endif %}">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                    在线教学平台地址维护
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
             {% url 'stu_data_parser' as stu_data_parser %}
             <a href="{{ stu_data_parser }}"
                class="nav-link {% if stu_data_parser == request.path %} active {% endif %}">
@@ -112,6 +71,29 @@
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                     序列化学生数据解析
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            {% url 'add_student' as add_student %}
+            <a href="{{ add_student }}" class="nav-link  {% if add_student == request.path %} active {% endif %}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    添加学生
+
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            {% url 'manage_student' as manage_student %}
+            {% url 'edit_student' student_id as edit_student %}
+
+            <a href="{{ manage_student }}"
+               class="nav-link  {% if edit_student == request.path or manage_student == request.path %} active {% endif %}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    管理学生
+
                 </p>
             </a>
         </li>
@@ -135,49 +117,21 @@
                 </p>
             </a>
         </li>
-        <li class="nav-item">
-            {% url 'stu_exam_num' as stu_exam_num %}
-            <a href="{{ stu_exam_num }}"
-               class="nav-link {% if stu_exam_num == request.path %} active {% endif %}">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                    学生准考证号生成
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            {% url 'manage_stu_exam_num' as manage_stu_exam_num %}
-            <a href="{{ manage_stu_exam_num }}"
-               class="nav-link {% if manage_stu_exam_num == request.path %} active {% endif %}">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                    学生准考证号管理
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            {% url 'admin_notify_staff' as admin_notify_staff %}
-            <a href="{{ admin_notify_staff }}"
-               class="nav-link {% if admin_notify_staff == request.path %} active {% endif %}">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                    教师通知
 
-                </p>
-            </a>
+        </ul>
         </li>
-        <li class="nav-item">
-            {% url 'admin_notify_student' as admin_notify_student %}
-            <a href="{{ admin_notify_student }}"
-               class="nav-link {% if admin_notify_student == request.path %} active {% endif %}">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                    学生通知
 
+         <li class="nav-item ">
+            <a href="javascript:void(0);" onclick="" class="nav-link">
+                <i class="nav-icon fa fa-clipboard"></i>
+                <p>
+                    教师信息维护
+                    <i class="right fas fa-angle-left"></i>
                 </p>
             </a>
-        </li>
-        <li class="nav-item">
+        <ul class="nav nav-treeview">
+
+         <li class="nav-item">
             {% url 'add_staff' as add_staff %}
             <a href="{{ add_staff }}" class="nav-link {% if add_staff == request.path %} active {% endif %}">
                 <i class="nav-icon fas fa-th"></i>
@@ -201,28 +155,28 @@
             </a>
         </li>
         <li class="nav-item">
-            {% url 'add_student' as add_student %}
-            <a href="{{ add_student }}" class="nav-link  {% if add_student == request.path %} active {% endif %}">
+            <a href="{{ admin_view_attendance }}"
+               class="nav-link  {% if admin_view_attendance == request.path %} active {% endif %}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                   添加学生
-
+                    出勤情况
                 </p>
             </a>
         </li>
-        <li class="nav-item">
-            {% url 'manage_student' as manage_student %}
-            {% url 'edit_student' student_id as edit_student %}
 
-            <a href="{{ manage_student }}"
-               class="nav-link  {% if edit_student == request.path or manage_student == request.path %} active {% endif %}">
-                <i class="nav-icon fas fa-th"></i>
+        </ul>
+        </li>
+
+        <li class="nav-item ">
+            <a href="javascript:void(0);" onclick="" class="nav-link">
+                <i class="nav-icon fa fa-solar-panel"></i>
                 <p>
-                    管理学生
-
+                    课程与考试管理
+                    <i class="right fas fa-angle-left"></i>
                 </p>
             </a>
-        </li>
+        <ul class="nav nav-treeview">
+
         <li class="nav-item">
             {% url 'add_course' as add_course %}
             <a href="{{ add_course }}" class="nav-link  {% if add_course == request.path %} active {% endif %}">
@@ -240,17 +194,71 @@
                class="nav-link  {% if edit_course == request.path or manage_course == request.path %} active {% endif %}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                   管理课程
+                    管理课程
 
                 </p>
             </a>
         </li>
+         <li class="nav-item">
+            {% url 'add_online_teaching_url' as add_online_teaching_url %}
+            <a href="{{ add_online_teaching_url }}"
+               class="nav-link {% if add_online_teaching_url == request.path %} active {% endif %}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    在线教学平台地址添加
+                </p>
+            </a>
+        </li>
         <li class="nav-item">
+            {% url 'manage_online_teaching_url' as manage_online_teaching_url %}
+            <a href="{{ manage_online_teaching_url }}"
+               class="nav-link {% if manage_online_teaching_url == request.path %} active {% endif %}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    在线教学平台地址维护
+                </p>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            {% url 'stu_exam_num' as stu_exam_num %}
+            <a href="{{ stu_exam_num }}"
+               class="nav-link {% if stu_exam_num == request.path %} active {% endif %}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    学生准考证号生成
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            {% url 'manage_stu_exam_num' as manage_stu_exam_num %}
+            <a href="{{ manage_stu_exam_num }}"
+               class="nav-link {% if manage_stu_exam_num == request.path %} active {% endif %}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    学生准考证号管理
+                </p>
+            </a>
+        </li>
+
+        </ul>
+        </li>
+
+        <li class="nav-item ">
+            <a href="javascript:void(0);" onclick="" class="nav-link">
+                <i class="nav-icon fa fa-microscope"></i>
+                <p>
+                    学期与学科规划
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+        <ul class="nav nav-treeview">
+             <li class="nav-item">
             {% url 'add_subject' as add_subject %}
             <a href="{{ add_subject }}" class="nav-link  {% if add_subject == request.path %} active {% endif %}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                   添加学科
+                    添加学科
 
                 </p>
             </a>
@@ -267,7 +275,7 @@
                 </p>
             </a>
         </li>
-        <li class="nav-item">
+         <li class="nav-item">
             {% url 'add_session' as add_session %}
             <a href="{{ add_session }}" class="nav-link  {% if add_session == request.path %} active {% endif %}">
                 <i class="nav-icon fas fa-th"></i>
@@ -289,18 +297,75 @@
                 </p>
             </a>
         </li>
-        <li class="nav-item">
-            {% url 'admin_view_attendance' as admin_view_attendance %}
 
+
+        </ul>
+        </li>
+
+        <li class="nav-item ">
+            <a href="javascript:void(0);" onclick="" class="nav-link">
+                <i class="nav-icon fa fa-graduation-cap"></i>
+                <p>
+                    毕业、离职与反馈管理
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+        <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="{{ admin_view_attendance }}"
-               class="nav-link  {% if admin_view_attendance == request.path %} active {% endif %}">
+            {% url 'view_staff_leave' as view_staff_leave %}
+
+            <a href="{{ view_staff_leave }}"
+               class="nav-link  {% if view_staff_leave == request.path %} active {% endif %}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                   出勤情况
+                    教师离职管理
+
                 </p>
             </a>
         </li>
+        <li class="nav-item">
+            {% url 'view_student_leave' as view_student_leave %}
+
+            <a href="{% url 'view_student_leave' %}"
+               class="nav-link  {% if view_student_leave == request.path %} active {% endif %}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    学生毕业管理
+                </p>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            {% url 'admin_notify_staff' as admin_notify_staff %}
+            <a href="{{ admin_notify_staff }}"
+               class="nav-link {% if admin_notify_staff == request.path %} active {% endif %}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    教师通知
+
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            {% url 'admin_notify_student' as admin_notify_student %}
+            <a href="{{ admin_notify_student }}"
+               class="nav-link {% if admin_notify_student == request.path %} active {% endif %}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    学生通知
+
+                </p>
+            </a>
+        </li>
+
+
+
+
+
+        <li class="nav-item">
+            {% url 'admin_view_attendance' as admin_view_attendance %}
+
+
         <li class="nav-item">
             {% url 'student_feedback_message' as student_feedback_message %}
 
@@ -325,29 +390,56 @@
                 </p>
             </a>
         </li>
-        <li class="nav-item">
-            {% url 'view_staff_leave' as view_staff_leave %}
 
-            <a href="{{ view_staff_leave }}"
-               class="nav-link  {% if view_staff_leave == request.path %} active {% endif %}">
+
+        </ul>
+        </li>
+
+        <li class="nav-item ">
+            <a href="javascript:void(0);" onclick="" class="nav-link">
+                <i class="nav-icon fa fa-tools"></i>
+                <p>
+                    实用工具
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+        <ul class="nav nav-treeview">
+
+        <li class="nav-item">
+            {% url 'calc' as calc %}
+            <a href="{{ calc }}"
+               class="nav-link {% if calc == request.path %} active {% endif %}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                   教师离职管理
-
+                    便捷计算
                 </p>
             </a>
         </li>
         <li class="nav-item">
-            {% url 'view_student_leave' as view_student_leave %}
-
-            <a href="{% url 'view_student_leave' %}"
-               class="nav-link  {% if view_student_leave == request.path %} active {% endif %}">
+            {% url 'search' as search %}
+            <a href="{{ search }}"
+               class="nav-link {% if search == request.path %} active {% endif %}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                    学生毕业管理
+                    全局查询
                 </p>
             </a>
         </li>
+        <li class="nav-item">
+            {% url 'group_photo' as group_photo %}
+            <a href="{{ group_photo }}"
+               class="nav-link {% if group_photo == request.path %} active {% endif %}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    媒体管理
+                </p>
+            </a>
+        </li>
+
+        </ul>
+        </li>
+
+
 
     {% elif request.user.user_type == '2' %}
         <!-- Brand Logo -->
@@ -435,7 +527,7 @@
                class="nav-link {% if staff_take_attendance == request.path %} active {% endif %}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                   出勤
+                    出勤
 
                 </p>
             </a>
@@ -582,7 +674,7 @@
                class="nav-link {% if student_feedback == request.path %} active {% endif %}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                   反馈
+                    反馈
 
                 </p>
             </a>
@@ -595,7 +687,7 @@
     <li class="nav-item">
         <a href="{% url 'user_logout' %}" onclick="return confirm('Your session would be terminated.\n\nProceed?')"
            class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
+            <i class="nav-icon fas fa-arrow-circle-left"></i>
             <p>
                 注销
             </p>

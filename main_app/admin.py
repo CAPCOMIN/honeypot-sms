@@ -43,8 +43,8 @@ class UserModel(admin.ModelAdmin):
 
 
 class OpModel(admin.ModelAdmin):
-    list_display = ('re_user', 're_ip', 'get_path', 're_time', 'colored_rp_status_code', 'update_re_content',
-                    'update_rp_content', 'access_time')
+    list_display = ('re_user', 're_ip', 'get_path', 're_time', 'colored_rp_status_code', 'update_rp_content',
+                    'update_re_content', 'access_time')
     readonly_fields = ('re_user', 're_ip', 're_url', 're_content', 'colored_rp_status_code', 'rp_content',
                        're_time', 're_method', 'access_time', 're_ua', 'rp_status_code', )
     search_fields = ('re_user__email', 're_user__first_name', 're_user__last_name', 're_ip', 're_url', 're_content',
@@ -54,6 +54,7 @@ class OpModel(admin.ModelAdmin):
     def get_path(self, instance):
         if len(str(instance.re_url)) > 35:
             p = '{}...'.format(str(instance.re_url)[0:35])
+            #todo path url
             return format_html('<a href="?re_url={full_path}">{path}</a>', path=p, full_path=instance.re_url)
         else:
             return format_html('<a href="?re_url={path}">{path}</a>', path=instance.re_url)

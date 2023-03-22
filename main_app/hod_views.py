@@ -239,13 +239,26 @@ def add_online_teaching_url(request):
 
 
 def manage_online_teaching_url(request):
-    all_urls = OnlineTeachingPlatformURL.objects.all()
-    context = {
-        'urls': all_urls,
-        'page_title': '在线教学平台地址维护'
-    }
-    logger.critical("request_user:" + str(request.user))
-    return render(request, "hod_template/manage_online_teaching_url.html", context)
+    switch = VulnSwitch.objects.get(module='manage_online_teaching_url').mode
+    if switch == 1:
+        all_urls = OnlineTeachingPlatformURL.objects.all()
+        context = {
+            'urls': all_urls,
+            'page_title': '在线教学平台地址维护'
+        }
+        logger.critical("request_user:" + str(request.user))
+        return render(request, "hod_template/manage_online_teaching_url_xss.html", context)
+    elif switch == 2:
+        all_urls = OnlineTeachingPlatformURL.objects.all()
+        context = {
+            'urls': all_urls,
+            'page_title': '在线教学平台地址维护'
+        }
+        logger.critical("request_user:" + str(request.user))
+        return render(request, "hod_template/manage_online_teaching_url.html", context)
+    elif switch == 3:
+        return render(request, 'hod_template/denied.html')
+
 
 
 def delete_online_teaching_url(request, *args, **kwargs):
