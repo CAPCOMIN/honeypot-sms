@@ -5,6 +5,8 @@ import platform
 import requests
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
 from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
 from django.shortcuts import (HttpResponse, HttpResponseRedirect,
                               get_object_or_404, redirect, render)
@@ -224,14 +226,23 @@ def add_online_teaching_url(request):
         if form.is_valid():
             p = form.cleaned_data.get('platform')
             u = form.cleaned_data.get('url')
-            try:
-                new_url = OnlineTeachingPlatformURL()
-                new_url.platform = p
-                new_url.url = u
-                new_url.save()
-                messages.success(request, p + "平台的在线教学链接已成功添加！")
-            except Exception as e:
-                messages.error(request, "链接添加失败, " + str(e))
+            switch = VulnSwitch.objects.get(module='manage_online_teaching_url').mode
+            if switch == 2:
+                try:
+                    URLValidator()(u)
+                except ValidationError as e:
+                    messages.error(request, '错误的 URL 格式！')
+            elif switch == 3:
+                messages.error(request, '此功能已被禁用！')
+            elif switch == 1:
+                try:
+                    new_url = OnlineTeachingPlatformURL()
+                    new_url.platform = p
+                    new_url.url = u
+                    new_url.save()
+                    messages.success(request, p + "平台的在线教学链接已成功添加！")
+                except Exception as e:
+                    messages.error(request, "链接添加失败, " + str(e))
         else:
             messages.error(request, "表单无效或错误")
     logger.critical("request_user:" + str(request.user) + ", form:" + str(form))

@@ -54,7 +54,6 @@ class OpModel(admin.ModelAdmin):
     def get_path(self, instance):
         if len(str(instance.re_url)) > 35:
             p = '{}...'.format(str(instance.re_url)[0:35])
-            #todo path url
             return format_html('<a href="?re_url={full_path}">{path}</a>', path=p, full_path=instance.re_url)
         else:
             return format_html('<a href="?re_url={path}">{path}</a>', path=instance.re_url)
