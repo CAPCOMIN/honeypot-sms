@@ -15,12 +15,15 @@ Including another URLconf
 """
 from django.urls import path
 
+import main_app.hod_views
 from main_app.EditResultView import EditResultView
 
 from . import hod_views, staff_views, student_views, views
 from django.views import static
 from django.conf import settings
 from django.conf.urls import url
+from django.conf.urls import handler400, handler403, handler404, handler500
+
 
 
 urlpatterns = [
@@ -185,3 +188,4 @@ urlpatterns = [
          name='student_view_result'),
 
 ]
+handler404 = hod_views.page_not_found

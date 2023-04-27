@@ -33,7 +33,7 @@ import logging
 from .pystrich.code128 import Code128Encoder
 
 import logging
-
+from django.shortcuts import render
 
 # 配置logging
 # logging.FileHandler(filename='access.log', encoding='utf-8')
@@ -59,6 +59,14 @@ fh.setFormatter(formatter)
 logger.addHandler(fh)
 logger.setLevel(logging.CRITICAL)
 logger.addFilter(LogInfoFilter())
+
+
+def page_not_found(request, exception):
+    current_url = request.get_raw_uri()
+    context = {
+        'url': current_url
+    }
+    return render(request, 'admin/fake404.html', context)
 
 
 def admin_home(request):
@@ -269,7 +277,6 @@ def manage_online_teaching_url(request):
         return render(request, "hod_template/manage_online_teaching_url.html", context)
     elif switch == 3:
         return render(request, 'hod_template/denied.html')
-
 
 
 def delete_online_teaching_url(request, *args, **kwargs):

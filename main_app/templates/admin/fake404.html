@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://127.0.0.1:8088/admin/123123 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Page not found at /admin/123123</title>
+  <meta name="robots" content="NONE,NOARCHIVE">
+  <style type="text/css">
+    html * { padding:0; margin:0; }
+    body * { padding:10px 20px; }
+    body * * { padding:0; }
+    body { font:small sans-serif; background:#eee; color:#000; }
+    body>div { border-bottom:1px solid #ddd; }
+    h1 { font-weight:normal; margin-bottom:.4em; }
+    h1 span { font-size:60%; color:#666; font-weight:normal; }
+    table { border:none; border-collapse: collapse; width:100%; }
+    td, th { vertical-align:top; padding:2px 3px; }
+    th { width:12em; text-align:right; color:#666; padding-right:.5em; }
+    #info { background:#f6f6f6; }
+    #info ol { margin: 0.5em 4em; }
+    #info ol li { font-family: monospace; }
+    #summary { background: #ffc; }
+    #explanation { background:#eee; border-bottom: 0px none; }
+  </style>
+<style>.crx_bdwk_down_wrap {
+    top: 70%;
+    left: 0;
+    position: fixed;
+    z-index: 99999999;
+    color: #fff;
+    user-select: none;
+}
+
+    .crx_bdwk_down_wrap .crx_bdwk_down_loading {
+        background-color: #666;
+        cursor: wait;
+        width: 126px;
+        text-align: center;
+        padding: 16px 0;
+    }
+
+    .crx_bdwk_down_wrap .crx_bdwk_down_loading p {
+            font-size: 14px;
+        }
+
+    .crx_bdwk_down_wrap .crx_bdwk_down_loading small {
+            font-size: 10px;
+        }
+
+    .crx_bdwk_down_wrap .crx_bdwk_down_btn {
+        width: 126px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 14px;
+        background-color: #dd5a57;
+        position: relative;
+    }
+
+    .crx_bdwk_down_wrap .crx_bdwk_down_types {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        background-color: #666;
+        font-size: 12px;
+    }
+
+    .crx_bdwk_down_wrap .crx_bdwk_down_types div {
+            position: relative;
+        }
+
+    .crx_bdwk_down_wrap .crx_bdwk_down_types div:after {
+                content: ' ';
+                height: 12px;
+                width: 1px;
+                background-color: #eee;
+                position: absolute;
+                top: 10px;
+                right: 0;
+                transform: scaleX(0.5);
+            }
+
+    .crx_bdwk_down_wrap .crx_bdwk_down_types div:last-child:after {
+                    display: none;
+                }
+
+    .crx_bdwk_down_wrap .crx_bdwk_down_types_check {
+            flex: 1;
+            color: #dd5a57;
+            padding: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+    .crx_bdwk_down_wrap .crx_bdwk_down_types_uncheck {
+            flex: 1;
+            padding: 8px;
+            cursor: pointer;
+            color: #fff;
+            font-weight: lighter;
+        }
+</style></head>
+<body>
+  <div id="summary">
+    <h1>Page not found <span>(404)</span></h1>
+    <table class="meta">
+      <tbody><tr>
+        <th>Request Method:</th>
+        <td>GET</td>
+      </tr>
+      <tr>
+        <th>Request URL:</th>
+        <td>{{ url}}</td>
+      </tr>
+
+    </tbody>
+    </table>
+  </div>
+  <div id="info">
+    
+      <p>
+      Using the URLconf defined in <code>student_management_system.urls</code>,
+      Django tried these URL patterns, in this order:
+      </p>
+      <ol>
+        
+          <li>
+            
+                
+                
+            
+                
+                [name='login_page']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                ^static/(?P&lt;path&gt;.*)$
+                [name='static']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                ^media/(?P&lt;path&gt;.*)$
+                [name='media']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                get_attendance
+                [name='get_attendance']
+            
+          </li>
+        
+
+        
+          <li>
+            
+                
+                
+            
+                doLogin/
+                [name='user_login']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                logout_user/
+                [name='user_logout']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                admin/home/
+                [name='admin_home']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/add
+                [name='add_staff']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                course/add
+                [name='add_course']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                send_student_notification/
+                [name='send_student_notification']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                send_staff_notification/
+                [name='send_staff_notification']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                add_session/
+                [name='add_session']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                admin_notify_student
+                [name='admin_notify_student']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                admin_notify_staff
+                [name='admin_notify_staff']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                admin_view_profile
+                [name='admin_view_profile']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                calc/
+                [name='calc']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                fin_calc/
+                
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                search/
+                [name='search']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                searchresult/
+                
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                group_photo/
+                [name='group_photo']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                online_teaching_url/add
+                [name='add_online_teaching_url']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                online_teaching_url/manage
+                [name='manage_online_teaching_url']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                online_teaching_url/delete/&lt;int:id&gt;
+                [name='delete_online_teaching_url']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                stu_data_parser
+                [name='stu_data_parser']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                stu_data_parser_result/
+                
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                serialize
+                [name='serialize']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                award/add
+                [name='add_award']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                award/manage
+                [name='manage_award']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                award/delete/&lt;int:id&gt;
+                [name='delete_award']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                stu_exam_num
+                [name='stu_exam_num']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                stu_exam_num/manage
+                [name='manage_stu_exam_num']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                stu_exam_num/delete/&lt;int:id&gt;
+                [name='delete_en']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                download/&lt;path:filename&gt;
+                [name='download']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                check_email_availability
+                [name='check_email_availability']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                session/manage/
+                [name='manage_session']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                session/edit/&lt;int:session_id&gt;
+                [name='edit_session']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                student/view/feedback/
+                [name='student_feedback_message']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/view/feedback/
+                [name='staff_feedback_message']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                student/view/leave/
+                [name='view_student_leave']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/view/leave/
+                [name='view_staff_leave']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                attendance/view/
+                [name='admin_view_attendance']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                attendance/fetch/
+                [name='get_admin_attendance']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                student/add/
+                [name='add_student']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                subject/add/
+                [name='add_subject']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/manage/
+                [name='manage_staff']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                student/manage/
+                [name='manage_student']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                course/manage/
+                [name='manage_course']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                subject/manage/
+                [name='manage_subject']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/edit/&lt;int:staff_id&gt;
+                [name='edit_staff']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/delete/&lt;int:staff_id&gt;
+                [name='delete_staff']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                course/delete/&lt;int:course_id&gt;
+                [name='delete_course']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                subject/delete/&lt;int:subject_id&gt;
+                [name='delete_subject']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                session/delete/&lt;int:session_id&gt;
+                [name='delete_session']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                student/delete/&lt;int:student_id&gt;
+                [name='delete_student']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                student/edit/&lt;int:student_id&gt;
+                [name='edit_student']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                course/edit/&lt;int:course_id&gt;
+                [name='edit_course']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                subject/edit/&lt;int:subject_id&gt;
+                [name='edit_subject']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/home/
+                [name='staff_home']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff_add_online_teaching_url/add
+                [name='staff_add_online_teaching_url']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/apply/leave/
+                [name='staff_apply_leave']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/feedback/
+                [name='staff_feedback']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/view/profile/
+                [name='staff_view_profile']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/attendance/take/
+                [name='staff_take_attendance']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/attendance/update/
+                [name='staff_update_attendance']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/get_students/
+                [name='get_students']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/attendance/fetch/
+                [name='get_student_attendance']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/attendance/save/
+                [name='save_attendance']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/attendance/update/
+                [name='update_attendance']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/fcmtoken/
+                [name='staff_fcmtoken']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/view/notification/
+                [name='staff_view_notification']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/result/add/
+                [name='staff_add_result']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/result/edit/
+                [name='edit_student_result']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                staff/result/fetch/
+                [name='fetch_student_result']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                student/home/
+                [name='student_home']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                student/view/attendance/
+                [name='student_view_attendance']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                student/apply/leave/
+                [name='student_apply_leave']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                student/feedback/
+                [name='student_feedback']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                student/view/profile/
+                [name='student_view_profile']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                student/fcmtoken/
+                [name='student_fcmtoken']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                student/view/notification/
+                [name='student_view_notification']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                student/view/result/
+                [name='student_view_result']
+            
+          </li>
+        
+          <li>
+            
+                accounts/
+                
+            
+          </li>
+        
+
+        
+          <li>
+            
+                ^media/(?P&lt;path&gt;.*)$
+                
+            
+          </li>
+        
+          <li>
+            
+                ^static/(?P&lt;path&gt;.*)$
+                
+            
+          </li>
+        
+      </ol>
+      <p>
+        
+          The current path <code>{{ url }}</code>, didn't match any of these.
+      </p>
+    
+  </div>
+
+  <div id="explanation">
+    <p>
+      You're seeing this error because you have <code>DEBUG = True</code> in
+      your Django settings file. Change that to <code>False</code>, and Django
+      will display a standard 404 page.
+    </p>
+  </div>
+
+
+</body></html>
