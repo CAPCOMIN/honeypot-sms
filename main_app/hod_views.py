@@ -45,6 +45,7 @@ from django.shortcuts import render
 #     datefmt="%Y-%m-%d %H:%M:%S",
 #     level=logging.CRITICAL,
 # )
+
 class LogInfoFilter(logging.Filter):
     def filter(self, record):
         if record.funcName.find('log_message') == -1:
@@ -62,11 +63,16 @@ logger.addFilter(LogInfoFilter())
 
 
 def page_not_found(request, exception):
-    current_url = request.get_raw_uri()
-    context = {
-        'url': current_url
-    }
-    return render(request, 'admin/fake404.html', context)
+    switch = VulnSwitch.objects.get(module='page_not_found').mode
+    # print(switch)
+    if switch == 1:
+        current_url = request.get_raw_uri()
+        context = {
+            'url': current_url
+        }
+        return render(request, 'admin/fake404.html', context)
+    else:
+        return render(request, 'admin/404.html')
 
 
 def admin_home(request):
@@ -151,16 +157,20 @@ def search(request):
     # print(switch)
     if switch == 3:
         return render(request, 'hod_template/denied.html')
-    else:
+    elif switch == 1:
         title = {'page_title': '数据查询'}
         logger.critical("request_user:" + str(request.user))
-        return render(request, 'hod_template/search.html', title)
+        return render(request, 'hod_template/search_vuln.html', title)
+    elif switch == 2:
+        title = {'page_title': '数据查询'}
+        logger.critical("request_user:" + str(request.user))
+        return render(request, 'hod_template/search_repaired.html', title)
 
 
 def searchResult(request):
     switch = VulnSwitch.objects.get(module='search').mode
     if switch == 1:
-        result = []
+        result1 = []
         con = sqlite3.connect('db.sqlite3')
         firstName = request.GET['f']
         print(firstName)
@@ -170,15 +180,15 @@ def searchResult(request):
             "select last_name,first_name,email,gender from main_app_customuser where first_name = '" + firstName + "'")
         for row in dbResult:
             print(row)
-            result.append(row)
+            result1.append(row)
         con.close()
-        print(result)
-        m = {'m': result,
+        print(result1)
+        m1 = {'m': result1,
              'page_title': '数据查询'
              # 'ln':result[0]
              }
-        print(m)
-        return render(request, 'hod_template/search.html', m)
+        print(m1)
+        return render(request, 'hod_template/search_vuln.html', m1)
     elif switch == 2:
         firstName = request.GET['f']
         try:
@@ -193,7 +203,7 @@ def searchResult(request):
              'page_title': '数据查询'}
         print(m)
         logger.critical("request_user:" + str(request.user) + ", f:" + str(firstName) + ", f:" + str(result))
-        return render(request, 'hod_template/search.html', m)
+        return render(request, 'hod_template/search_repaired.html', m)
 
 
 def upload_and_show_group_photo(request):

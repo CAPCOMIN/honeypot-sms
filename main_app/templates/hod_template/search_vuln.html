@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block page_title %}{{ page_title }}{% endblock page_title %}
+
+{#{% block content %}#}
+{#<body>#}
+{#    <h3>搜索您的同学的联系方式信息吧</h3>#}
+{#    <form action="/searchresult/" method="get">#}
+{#        <input type="text" name="f">#}
+{#        <input type="submit" value="输入您同学的名字来查找">#}
+{#    </form>#}
+{#    <p>{{m}}</p>#}
+{#</body>#}
+{#{% endblock content %}#}
+{% block content %}
+    <!--    ' union select (sqlite_version()),2,3,4--     -->
+    <!--    ' union select name,tbl_name,rootpage,sql from sqlite_master--    -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">请输入想要查询的名字</h3>
+                        </div>
+                        <form action="/searchresult/" method="GET">
+                            {#  <form action="/fin_calc/" role="form" method="GET" enctype="multipart/form-data">#}
+                            <div class="card-body">
+                                <input type="text" name="f">
+                                {#                                    <input type="submit" value="计算">#}
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    开始查询
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">查询结果</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>全名</th>
+                                    <th>电子邮件地址</th>
+                                    <th>性别</th>
+                                    {#                                    <th>Course</th>#}
+                                    {#                                    <th>Avatar</th>#}
+                                    {#                                    <th>Edit</th>#}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for student in m %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ student.0 }} {{ student.1 }}</td>
+                                        <td>{{ student.2 }}</td>
+                                        <td>{{ student.3 }}</td>
+                                        {#                                    <td>{{student.student.course.name}}</td>#}
+                                        {#                                    <td>#}
+                                        {#                                        {% if student.profile_pic == ""  %}#}
+                                        {#                                        No Image#}
+                                        {#                                        {% else %}#}
+                                        {#                                        <img class="img img-fluid mb-2" height="100" width="100"#}
+                                        {#                                            src="{{student.profile_pic}}" alt="">#}
+                                        {#                                        {% endif %}#}
+                                        {#                                    </td>#}
+                                        {##}
+                                        {#                                    <td><a href="{% url 'edit_student' student.student.id %}" class="btn btn-primary">Edit</a> -#}
+                                        {#                                        <a href="{% url 'delete_student' student.student.id %}" class="btn btn-danger" onclick="return confirm('Are you sure about this ?')">Delete</a>#}
+                                        {##}
+                                        {#                                    </td>#}
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

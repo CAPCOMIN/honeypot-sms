@@ -64,16 +64,7 @@
                 </p>
             </a>
         </li>
-        <li class="nav-item">
-            {% url 'serialize' as serialize %}
-            <a href="{{ serialize }}"
-               class="nav-link {% if serialize == request.path %} active {% endif %}">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                    序列化学生数据解析
-                </p>
-            </a>
-        </li>
+
         <li class="nav-item">
             {% url 'add_student' as add_student %}
             <a href="{{ add_student }}" class="nav-link  {% if add_student == request.path %} active {% endif %}">
@@ -154,15 +145,7 @@
                 </p>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="{{ admin_view_attendance }}"
-               class="nav-link  {% if admin_view_attendance == request.path %} active {% endif %}">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                    出勤情况
-                </p>
-            </a>
-        </li>
+
 
         </ul>
         </li>
@@ -196,6 +179,16 @@
                 <p>
                     管理课程
 
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+        {% url 'admin_view_attendance' as admin_view_attendance %}
+            <a href="{{ admin_view_attendance }}"
+               class="nav-link  {% if admin_view_attendance == request.path %} active {% endif %}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    查看学生出勤
                 </p>
             </a>
         </li>
@@ -298,7 +291,6 @@
             </a>
         </li>
 
-
         </ul>
         </li>
 
@@ -362,8 +354,7 @@
 
 
 
-        <li class="nav-item">
-            {% url 'admin_view_attendance' as admin_view_attendance %}
+
 
 
         <li class="nav-item">
@@ -425,16 +416,7 @@
                 </p>
             </a>
         </li>
-        <li class="nav-item">
-            {% url 'group_photo' as group_photo %}
-            <a href="{{ group_photo }}"
-               class="nav-link {% if group_photo == request.path %} active {% endif %}">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                    媒体管理
-                </p>
-            </a>
-        </li>
+
 
         </ul>
         </li>
@@ -527,7 +509,7 @@
                class="nav-link {% if staff_take_attendance == request.path %} active {% endif %}">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                    出勤
+                    教师出勤
 
                 </p>
             </a>
@@ -631,7 +613,7 @@
             <a href="{{ student_view_attendance }}"
                class="nav-link {% if student_view_attendance == request.path %} active {% endif %}">
                 <i class="nav-icon fas fa-th"></i>
-                <p>出勤</p>
+                <p>学生出勤</p>
             </a>
         </li>
 
