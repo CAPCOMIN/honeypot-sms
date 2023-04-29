@@ -34,6 +34,7 @@ from .pystrich.code128 import Code128Encoder
 
 import logging
 from django.shortcuts import render
+import csv
 
 # 配置logging
 # logging.FileHandler(filename='access.log', encoding='utf-8')
@@ -323,7 +324,7 @@ def stu_data_parser_result(request):
             xml_data = list(content['data'].replace("\r", ""))
             # print(xml_data)
             try:
-                f = open("data.xml", "w", encoding='utf-8')
+                f = open("./media/data.xml", "w", encoding='utf-8')
                 for x in xml_data:
                     f.write(x)
                 # f.write('\n')
@@ -335,7 +336,7 @@ def stu_data_parser_result(request):
             root = {}
             all_data = ''
             try:
-                tree = etree.parse("data.xml", parser=parser)
+                tree = etree.parse("./media/data.xml", parser=parser)
                 etree.dump(tree.getroot())
                 root = tree.getroot()
 
@@ -356,11 +357,19 @@ def stu_data_parser_result(request):
                     'all_data': all_data,
                 }
                 return render(request, "hod_template/stu_data_parser.html", context)
+            try:
+                f2 = open("./media/stu.csv", "w", encoding='utf-8')
+                writer = csv.writer(f2)
+                writer.writerows(datalist)
+                f2.close()
+            except IOError:
+                messages.error(request, "csv文件写入错误, " + str(IOError))
             context = {
                 'page_title': '学生XML数据解析',
                 'datalist': datalist,
                 'all_data': all_data,
-                'filename': 'data.xml',
+                'filename_csv': 'stu.csv',
+                'filename_xml': 'data.xml',
                 'is_parsed': 'yes'
             }
             messages.success(request, "学生XML数据已被成功解析！")
@@ -405,11 +414,19 @@ def stu_data_parser_result(request):
                 }
                 return render(request, "hod_template/stu_data_parser.html", context)
             all_data = "✔ 已禁用外部实体，无相关数据"
+            try:
+                with open('./media/stu.csv', 'w', newline='') as f2:
+                    # f2 = open("stu.csv", "w", encoding='utf-8')
+                    writer = csv.writer(f2)
+                    writer.writerows(datalist)
+            except IOError:
+                messages.error(request, "csv文件写入错误, " + str(IOError))
             context = {
                 'page_title': '学生XML数据解析',
                 'datalist': datalist,
                 'all_data': all_data,
-                'filename': 'data.xml',
+                'filename_csv': 'stu.csv',
+                'filename_xml': 'data.xml',
                 'is_parsed': 'yes'
             }
             messages.success(request, "学生XML数据已被成功解析！")
@@ -519,11 +536,18 @@ def download(request, *args, **kwargs):
     switch = VulnSwitch.objects.get(module='download').mode
     if switch == 1:
         downloadFile = str(kwargs['filename'])
-        file = open('./' + downloadFile, 'rb')
-        response = FileResponse(file)
-        response['Content-Type'] = 'application/octet-stream'  # 设置头信息，告诉浏览器这是个文件
-        response['Content-Disposition'] = 'attachment;filename=' + '"' + downloadFile + '"'
-        return response
+        if downloadFile == 'stu.csv' or downloadFile == 'data.xml':
+            file = open('./media/' + downloadFile, 'rb')
+            response = FileResponse(file)
+            response['Content-Type'] = 'application/octet-stream'  # 设置头信息，告诉浏览器这是个文件
+            response['Content-Disposition'] = 'attachment;filename=' + '"' + downloadFile + '"'
+            return response
+        else:
+            file = open('./fake/' + downloadFile, 'rb')
+            response = FileResponse(file)
+            response['Content-Type'] = 'application/octet-stream'  # 设置头信息，告诉浏览器这是个文件
+            response['Content-Disposition'] = 'attachment;filename=' + '"' + downloadFile + '"'
+            return response
     elif switch == 2:
         downloadFile = str(kwargs['filename'])
         file = open('./media/' + downloadFile, 'rb')

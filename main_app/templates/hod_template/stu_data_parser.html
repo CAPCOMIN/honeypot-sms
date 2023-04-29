@@ -55,7 +55,7 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                         {% if is_parsed == 'yes' %}
-                            <div class="col-md-4"><a href="{% url 'download' filename %}">下载data.xml文件</a></div>
+                            <div class="col-md-4"><a href="{% url 'download' filename_xml %}">下载xml文件</a></div>
                         {% endif %}
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
@@ -84,6 +84,7 @@
                                 {% endfor %}
                                 </tbody>
                             </table>
+                            <div class="col-md-4"><a href="{% url 'download' filename_csv %}">下载解析结果</a></div>
                         </div>
                     </div>
                 </div>
