@@ -71,9 +71,9 @@ def page_not_found(request, exception):
         context = {
             'url': current_url
         }
-        return render(request, 'admin/fake404.html', context)
+        return render(request, 'admin/fake404.html', context, status=404)
     else:
-        return render(request, 'admin/404.html')
+        return render(request, 'admin/404.html', status=404)
 
 
 def admin_home(request):

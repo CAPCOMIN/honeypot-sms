@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 import time
 import json
 from main_app.models import OpLogs, AccessTimeOutLogs, CustomUser
+from student_management_system.urls import *
 from django.contrib import admin
 
 
@@ -89,6 +90,10 @@ class OpLogsMiddleWare(MiddlewareMixin):
             if url in self.data.get('re_url'):
                 return response
 
+        adminSecretUrl = urlpatterns[2].pattern.regex.pattern[1:-1]
+        if adminSecretUrl in self.data.get('re_url'):
+            return response
+
         # 获取响应数据字符串(多用于API, 返回JSON字符串)
         # print(response.status_code)
         # print(response.reason_phrase)
@@ -115,6 +120,10 @@ class OpLogsMiddleWare(MiddlewareMixin):
             AccessTimeOutLogs.objects.create(**self.data)  # 超时操作日志入库db
 
         OpLogs.objects.create(**self.data)  # 操作日志入库db
+        # ** 符号被用于传递一个字典参数。在这里， ** self.data的作用是将self.data中的所有键值对
+        # 作为参数传递给OpLogs.objects.create()方法。
+        # 这种语法称为“字典展开”，它可以将一个字典转换为一个参数序列，
+        # 将每个键作为参数名称，将每个键对应的值作为参数值。这样可以避免手动构建参数字典并使用关键字参数传递参数。
 
         return response
 

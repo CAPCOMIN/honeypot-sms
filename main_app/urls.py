@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
+from django.views.generic import RedirectView
 
 import main_app.hod_views
 from main_app.EditResultView import EditResultView
@@ -186,6 +187,6 @@ urlpatterns = [
          name="student_view_notification"),
     path('student/view/result/', student_views.student_view_result,
          name='student_view_result'),
-
+    path('favicon.ico', RedirectView.as_view(url='media/honey.png')),
 ]
 handler404 = hod_views.page_not_found

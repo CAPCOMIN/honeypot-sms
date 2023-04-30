@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
+from django.views.generic import RedirectView
 
 from main_app import hod_views
 from . import settings
@@ -27,6 +28,7 @@ urlpatterns = [
     path("", include('main_app.urls')),
     path("accounts/", include("django.contrib.auth.urls")),
     path('eM6y7uyZSX78aL9a8/', admin.site.urls),
+    path('favicon.ico', RedirectView.as_view(url='media/honey.png')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 handler404 = hod_views.page_not_found
