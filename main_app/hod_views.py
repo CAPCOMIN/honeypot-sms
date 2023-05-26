@@ -304,7 +304,8 @@ def delete_online_teaching_url(request, *args, **kwargs):
 def stu_data_parser(request):
     context = {
         'page_title': '学生XML数据解析',
-        'filename': 'data.xml'
+        'filename_csv': 'stu.csv',
+        'filename_xml': 'data.xml',
     }
     logger.critical("request_user:" + str(request.user))
 
@@ -352,7 +353,8 @@ def stu_data_parser_result(request):
                 messages.warning(request, "警告：数据解析错误，您可能提交了包含错误格式的数据！\n" + repr(e))
                 context = {
                     'page_title': '学生XML数据解析',
-                    'filename': 'data.xml',
+                    'filename_csv': 'stu.csv',
+                    'filename_xml': 'data.xml',
                     'datalist': datalist,
                     'all_data': all_data,
                 }
@@ -408,7 +410,8 @@ def stu_data_parser_result(request):
                 messages.warning(request, "警告：数据解析错误，您可能提交了包含错误格式的数据！\n" + repr(e))
                 context = {
                     'page_title': '学生XML数据解析',
-                    'filename': 'data.xml',
+                    'filename_csv': 'stu.csv',
+                    'filename_xml': 'data.xml',
                     'datalist': datalist,
                     'all_data': all_data,
                 }

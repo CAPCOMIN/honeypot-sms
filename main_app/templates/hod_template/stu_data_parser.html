@@ -43,7 +43,7 @@
             </div>
         </div>
     </section>
-
+{% if is_parsed == 'yes' %}
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -54,9 +54,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                        {% if is_parsed == 'yes' %}
                             <div class="col-md-4"><a href="{% url 'download' filename_xml %}">下载xml文件</a></div>
-                        {% endif %}
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
@@ -72,11 +70,6 @@
                                 {% for student in datalist %}
                                     <tr>
                                         <td>{{ forloop.counter }}</td>
-{#                                        <td>{{ student.0 }}</td>#}
-{#                                        <td>{{ student.1 }}</td>#}
-{#                                        <td>{{ student.2 }}</td>#}
-{#                                        <td>{{ student.3 }}</td>#}
-{#                                        <td>{{ student.4 }}</td>#}
                                         {% for i in student %}
                                             <td>{{ i }}</td>
                                             {% endfor %}
@@ -84,7 +77,9 @@
                                 {% endfor %}
                                 </tbody>
                             </table>
+
                             <div class="col-md-4"><a href="{% url 'download' filename_csv %}">下载解析结果</a></div>
+
                         </div>
                     </div>
                 </div>
@@ -108,6 +103,7 @@
             </div>
         </div>
     </section>
+    {% endif %}
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -116,8 +112,9 @@
                         <div class="card-header">
                             <h3 class="card-title">学生XML数据示例</h3>
                         </div>
-                        <br>
-                        <p>&lt;StuData&gt;<br>
+                        <div class="card-body">
+                        <code>
+                            &lt;StuData&gt;<br>
                             &lt;student&nbsp;id=&quot;stu1&quot;&nbsp;name=&quot;张三&quot;&gt;<br>
                             &nbsp;&nbsp;&nbsp;&lt;id&gt;08190001&lt;/id&gt;<br>
                             &nbsp;&nbsp;&nbsp;&lt;age&gt;20&lt;/age&gt;<br>
@@ -139,6 +136,8 @@
                             &nbsp;&nbsp;&nbsp;&lt;gender&gt;男&lt;/gender&gt;<br>
                             &lt;/student&gt;<br>
                             &lt;/StuData&gt;</p><br>
+                        </code>
+                        </div>
                     </div>
                 </div>
             </div>

