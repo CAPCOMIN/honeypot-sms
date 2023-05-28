@@ -36,6 +36,7 @@ import logging
 from django.shortcuts import render
 import csv
 
+
 # 配置logging
 # logging.FileHandler(filename='access.log', encoding='utf-8')
 # logging.basicConfig(
@@ -121,10 +122,11 @@ def calculated(request):
     formula = request.POST
     formula = formula['formula']
     # print(formula)
-    funcName = sys._getframe().f_code.co_name
+    # funcName = sys._getframe().f_code.co_name
     # print(sys._getframe().f_code.co_name)
-    switch = VulnSwitch.objects.get(module=str(funcName)).mode
+    switch = VulnSwitch.objects.get(module='calculated').mode
     if switch == 1:
+        print('1111111111111111111111111111111111111111111111')
         try:
             # result=eval(formula,{},{})
             # result=ast.literal_eval(formula)
@@ -185,17 +187,17 @@ def searchResult(request):
         con.close()
         print(result1)
         m1 = {'m': result1,
-             'page_title': '数据查询'
-             # 'ln':result[0]
-             }
+              'page_title': '数据查询'
+              # 'ln':result[0]
+              }
         print(m1)
         return render(request, 'hod_template/search_vuln.html', m1)
     elif switch == 2:
         firstName = request.GET['f']
         try:
-            result = CustomUser.objects.filter(Q(first_name__contains=firstName) |
-                                               Q(last_name__contains=firstName) |
-                                               Q(last_name__contains=firstName[0], first_name__contains=firstName[1:]))
+            result = CustomUser.objects.filter(Q(last_name__in=firstName) | Q(first_name__contains=firstName)
+                                               | Q(last_name__contains=firstName[0],
+                                                   first_name__contains=firstName[1:]))
         except Exception as e:
             messages.error(request, "搜索无效, " + str(e))
             result = ''
@@ -357,6 +359,7 @@ def stu_data_parser_result(request):
                     'filename_xml': 'data.xml',
                     'datalist': datalist,
                     'all_data': all_data,
+                    'is_parsed': 'yes',
                 }
                 return render(request, "hod_template/stu_data_parser.html", context)
             try:
@@ -372,7 +375,7 @@ def stu_data_parser_result(request):
                 'all_data': all_data,
                 'filename_csv': 'stu.csv',
                 'filename_xml': 'data.xml',
-                'is_parsed': 'yes'
+                'is_parsed': 'yes',
             }
             messages.success(request, "学生XML数据已被成功解析！")
             return render(request, "hod_template/stu_data_parser.html", context)
@@ -414,6 +417,7 @@ def stu_data_parser_result(request):
                     'filename_xml': 'data.xml',
                     'datalist': datalist,
                     'all_data': all_data,
+                    'is_parsed': 'yes',
                 }
                 return render(request, "hod_template/stu_data_parser.html", context)
             all_data = "✔ 已禁用外部实体，无相关数据"
@@ -553,12 +557,13 @@ def download(request, *args, **kwargs):
             return response
     elif switch == 2:
         downloadFile = str(kwargs['filename'])
-        file = open('./media/' + downloadFile, 'rb')
-        response = FileResponse(file)
-        response['Content-Type'] = 'application/octet-stream'  # 设置头信息，告诉浏览器这是个文件
-        response['Content-Disposition'] = 'attachment;filename=' + '"' + downloadFile + '"'
-        logger.critical("request_user:" + str(request.user) + ', downloadFile:' + str(kwargs['filename']))
-        return response
+        if downloadFile == 'stu.csv' or downloadFile == 'data.xml':
+            file = open('./media/' + downloadFile, 'rb')
+            response = FileResponse(file)
+            response['Content-Type'] = 'application/octet-stream'  # 设置头信息，告诉浏览器这是个文件
+            response['Content-Disposition'] = 'attachment;filename=' + '"' + downloadFile + '"'
+            logger.critical("request_user:" + str(request.user) + ', downloadFile:' + str(kwargs['filename']))
+            return response
     elif switch == 3:
         response = HttpResponseForbidden()
         return response
