@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
-from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
+from django.http import HttpResponse, JsonResponse, HttpResponseForbidden, HttpResponseNotFound
 from django.shortcuts import (HttpResponse, HttpResponseRedirect,
                               get_object_or_404, redirect, render)
 from django.templatetags.static import static
@@ -564,6 +564,8 @@ def download(request, *args, **kwargs):
             response['Content-Disposition'] = 'attachment;filename=' + '"' + downloadFile + '"'
             logger.critical("request_user:" + str(request.user) + ', downloadFile:' + str(kwargs['filename']))
             return response
+        else:
+            return HttpResponseNotFound("File not available.")
     elif switch == 3:
         response = HttpResponseForbidden()
         return response
